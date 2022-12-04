@@ -5,12 +5,10 @@ import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { ScreenSize } from '../utils';
 
 import { CreateHouse, CreateRoom, CreateBill, AddGuest, GuestDetail } from "../screens"
-import { HostList, ViewGuest, ViewHouse, ViewRoom } from "../screens"
 import { HostInfo } from "../screens"
 import { HostNavBar } from './NavBar';
 
 const Stack = createStackNavigator();
-const ViewStack = createStackNavigator();
 
 const backButtonImg = () => {
   return (
@@ -44,34 +42,8 @@ function renderTitle(route) {
   return true;
 }
 
-export const HostViewStack = () => {
-  return (
-    <Stack.Navigator
-    screenOptions={{
-      headerBackImage: backButtonImg,
-      headerStyle: {
-        backgroundColor: "white",
-        height: ScreenSize.height * 0.156
-      },
-      headerTitleStyle: {fontSize: ScreenSize.width * 0.06},
-      headerTintColor: "black",
-      headerBackTitleVisible: false
-    }}
-    initialRouteName="HostList"
-  >
-    <Stack.Screen name="HostList" component={HostList} options={{ title: 'Nhà trọ của bạn' }}/>
-    <Stack.Screen name="ViewHouse" component={ViewHouse} options={({ route }) => ({ title: route.params.name })}/>
-    <Stack.Screen name="ViewRoom" component={ViewRoom} options={({ route }) => ({ title: route.params.name })}/>
-    <Stack.Screen name="ViewGuest" component={ViewGuest} options={({ route }) => ({ title: route.params.name })}/>
-  </Stack.Navigator>
-  );
-};
-
-export const HostStack = () => {
-    return (
-      <Stack.Navigator
-      screenOptions={{
-        headerBackImage: backButtonImg,
+const HeaderStyle = {
+    headerBackImage: backButtonImg,
         headerStyle: {
           backgroundColor: "white",
           height: ScreenSize.height * 0.156
@@ -79,7 +51,12 @@ export const HostStack = () => {
         headerTitleStyle: {fontSize: ScreenSize.width * 0.06},
         headerTintColor: "black",
         headerBackTitleVisible: false
-      }}
+}
+
+export const HostStack = () => {
+    return (
+      <Stack.Navigator
+      screenOptions={HeaderStyle}
       initialRouteName="Feed"
     >
       <Stack.Screen name="Feed" component={HostNavBar} options={({ route }) => ({ headerTitle: getHeaderTitle(route), headerShown: renderTitle(route)})}/>

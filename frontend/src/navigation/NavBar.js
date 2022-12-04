@@ -3,8 +3,8 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { ScreenSize } from '../utils';
 
-import { HostChat, HostProfile, HostList, HostHome } from '../screens';
-import { HostViewStack } from './Stack';
+import { HostChat, HostProfile, HostHome } from '../screens';
+import { HostViewStack } from './HostViewStack';
 
 const size = ScreenSize.width * 0.1;
 const selectedLabel = "_____";
