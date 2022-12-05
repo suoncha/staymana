@@ -6,7 +6,7 @@ import { ScreenSize } from '../utils';
 
 import { CreateHouse, CreateRoom, CreateBill, AddGuest, GuestDetail } from "../screens"
 import { HostInfo } from "../screens"
-import { HostNavBar } from './NavBar';
+import { HostNavBar } from './HostNavBar';
 
 const Stack = createStackNavigator();
 
@@ -70,26 +70,3 @@ export const HostStack = () => {
     </Stack.Navigator>
     );
 };
-
-// Work in progress
-// export const GuestStack = () => {
-//   return (
-//     <Stack.Navigator
-//     screenOptions={{
-//       headerStyle: {
-//         backgroundColor: "white",
-//         height: ScreenSize.height * 0.156
-//       },
-//       headerTintColor: "black",
-//       headerBackTitleVisible: false
-//     }}
-//     initialRouteName="Feed"
-//   >
-//     <Stack.Screen name="Feed" component={HostNavBar} options={{ headerShown: false }}/>
-//     <Stack.Screen name="CreateHouse" component={CreateHouse} options={{ title: 'Tạo nhà trọ' }}/>
-//     <Stack.Screen name="CreateRoom" component={CreateRoom} options={{ title: 'Tạo phòng trọ' }} initialParams={{ fromHouse: false }}/>
-//     <Stack.Screen name="CreateBill" component={CreateBill} options={{ title: 'Tạo hóa đơn' }}/>
-//     <Stack.Screen name="AddGuest" component={AddGuest} options={{ title: 'Quét mã QR' }}/>
-//   </Stack.Navigator>
-//   );
-// };

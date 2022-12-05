@@ -1,11 +1,11 @@
 import React from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
 
-export function ViewRoom({ navigation}) {
+export function ViewRoom({route, navigation}) {
     // fake data
     const guest1 = 'Hoàng Vũ'
     const guest2 = 'Tuấn Minh'
-
+    const {name} = route.params
     return (
       <View style={styles.center}>
 
@@ -16,6 +16,14 @@ export function ViewRoom({ navigation}) {
       <Button
         title={guest2}
         onPress={() => navigation.navigate("ViewGuest", { name: guest2 })}
+      />
+      <Button
+        title={"Xem hóa đơn"}
+        onPress={() => navigation.navigate("ViewBill", { name: name, fromHouse: false})}
+      />
+      <Button
+        title={"Thêm người"}
+        onPress={() => navigation.navigate("AddGuest")}
       />
     </View>
     );

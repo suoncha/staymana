@@ -1,16 +1,23 @@
 import React from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
 
-export function ViewGuest({ navigation}) {
+export function ViewBill({route, navigation}) {
+    const {fromHouse} = route.params;
+    if (fromHouse)
     return (
       <View style={styles.center}>
 
       <Button
-        title="Xóa người thuê"
-        onPress={() => navigation.goBack()}
+        title="Thêm hóa đơn"
+        onPress={() => navigation.navigate("CreateBill")}
       />
     </View>
     );
+    // Else
+    return (
+        <View style={styles.center}>
+      </View>
+      );
 }
 
 const styles = StyleSheet.create({

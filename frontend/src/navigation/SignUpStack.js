@@ -3,7 +3,7 @@ import { Image } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { ScreenSize } from '../utils';
 
-import { HostList, ViewGuest, ViewHouse, ViewRoom, ViewBill } from "../screens"
+import { SignUp1, SignUp2, SignUp3, SignUp4, SignUp5 } from "../screens"
 
 const Stack = createStackNavigator();
 
@@ -28,20 +28,21 @@ const HeaderStyle = {
         },
         headerTitleStyle: {fontSize: ScreenSize.width * 0.06},
         headerTintColor: "black",
-        headerBackTitleVisible: false
+        headerBackTitleVisible: false,
+        title: 'Đăng ký'
 }
 
-export const HostViewStack = () => {
+export const SignUpStack = () => {
   return (
     <Stack.Navigator
     screenOptions={HeaderStyle}
-    initialRouteName="HostList"
+    initialRouteName="SignUp1"
   >
-    <Stack.Screen name="HostList" component={HostList} options={{ title: 'Nhà trọ của bạn' }}/>
-    <Stack.Screen name="ViewHouse" component={ViewHouse} options={({ route }) => ({ title: route.params.name })}/>
-    <Stack.Screen name="ViewRoom" component={ViewRoom} options={({ route }) => ({ title: route.params.name })}/>
-    <Stack.Screen name="ViewGuest" component={ViewGuest} options={({ route }) => ({ title: route.params.name })}/>
-    <Stack.Screen name="ViewBill" component={ViewBill} options={({ route }) => ({ title: route.params.name })}/>
+    <Stack.Screen name="SignUp1" component={SignUp1}/>
+    <Stack.Screen name="SignUp2" component={SignUp2}/>
+    <Stack.Screen name="SignUp3" component={SignUp3}/>
+    <Stack.Screen name="SignUp4" component={SignUp4}/>
+    <Stack.Screen name="SignUp5" component={SignUp5} options={{ headerShown: false }}/>
   </Stack.Navigator>
   );
 };

@@ -68,61 +68,6 @@ export const HostNavBar = () => {
   );
 }
 
-// Work in progress
-// export const GuestNavBar = () => {
-//   return (
-//     <Tab.Navigator
-//       initialRouteName="HostHome"
-//       activeColor="#049FFF"
-//       inactiveColor="#979797"
-//       screenOptions={{tabBarLabel: selectedLabel}}
-//       barStyle={{ 
-//         backgroundColor: 'white', 
-//         height: ScreenSize.height * 0.15,
-//         paddingVertical: ScreenSize.height * 0.04, 
-//       }}
-//     >
-//       <Tab.Screen
-//         name="HostHome"
-//         component={HostHome}
-//         options={{
-//           tabBarIcon: ({ color }) => (
-//             <MaterialCommunityIcons name="home-outline" color={color} size={size} style={styles}/>
-//           ),
-//         }}
-//       />
-//       <Tab.Screen
-//         name="HostList"
-//         component={HostList}
-//         options={{
-//           tabBarIcon: ({ color }) => (
-//             <MaterialCommunityIcons name="format-list-bulleted" color={color} size={size} style={styles}/>
-//           ),
-//         }}
-//       />
-//       <Tab.Screen
-//         name="HostChat"
-//         component={HostChat}
-//         options={{
-//             tabBarIcon: ({ color }) => (
-//               <MaterialCommunityIcons name="email-outline" color={color} size={size} style={styles}/>
-//             ),
-//         }}
-//       />
-//       <Tab.Screen
-//         name="HostProfile"
-//         component={HostProfile}
-//         options={{
-//             tabBarIcon: ({ color }) => (
-//               <MaterialCommunityIcons name="account-outline" color={color} size={size} style={styles}/>
-//             ),
-//         }}
-//       />
-//     </Tab.Navigator>
-//   );
-// }
-
-
 
   
 
