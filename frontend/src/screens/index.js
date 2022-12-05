@@ -13,6 +13,7 @@ export { ViewHouse } from './host/ViewHouse';
 export { ViewRoom } from './host/ViewRoom';
 export { ViewGuest } from './host/ViewGuest';
 export { ViewBill } from './host/ViewBill';
+export { HostNotification } from './host/HostNotification';
 // Guest
 export { GuestProfile } from "./guest/GuestProfile";
 export { GuestInfo } from "./guest/GuestInfo";

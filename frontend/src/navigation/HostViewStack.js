@@ -37,7 +37,7 @@ export const HostViewStack = () => {
     screenOptions={HeaderStyle}
     initialRouteName="HostList"
   >
-    <Stack.Screen name="HostList" component={HostList} options={{ title: 'Nhà trọ của bạn' }}/>
+    <Stack.Screen name="HostList" component={HostList} options={{ headerShown: false }}/>
     <Stack.Screen name="ViewHouse" component={ViewHouse} options={({ route }) => ({ title: route.params.name })}/>
     <Stack.Screen name="ViewRoom" component={ViewRoom} options={({ route }) => ({ title: route.params.name })}/>
     <Stack.Screen name="ViewGuest" component={ViewGuest} options={({ route }) => ({ title: route.params.name })}/>

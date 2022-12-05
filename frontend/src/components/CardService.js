@@ -1,5 +1,5 @@
 import { ScreenSize, TextStyle } from "../utils";
-import { StyleSheet, Text, View, TouchableOpacity, Pressable } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 import { Avatar } from "react-native-paper";
 import { useNavigation } from '@react-navigation/native';
 
@@ -37,7 +37,8 @@ const styles = StyleSheet.create({
   },
   image: {
     alignSelf: "center",
-    marginTop: 14,
+    marginTop: ScreenSize.width * 0.05,
+    overflow: 'hidden',
   },
   text: {
     width: "100%",
