@@ -1,11 +1,11 @@
 import React from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
 
-export function ViewHouse({ navigation}) {
+export function ViewHouse({route, navigation}) {
     // fake data
     const room1 = 'Phòng 101'
     const room2 = 'Phòng 102'
-
+    const {name} = route.params
     return (
       <View style={styles.center}>
 
@@ -16,6 +16,14 @@ export function ViewHouse({ navigation}) {
       <Button
         title={room2}
         onPress={() => navigation.navigate("ViewRoom", { name: room2 })}
+      />
+      <Button
+        title={"Xem hóa đơn"}
+        onPress={() => navigation.navigate("ViewBill", { name: name, fromHouse: true })}
+      />
+      <Button
+        title={"Thêm phòng"}
+        onPress={() => navigation.navigate("CreateRoom")}
       />
     </View>
     );

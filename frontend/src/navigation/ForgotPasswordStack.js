@@ -3,7 +3,7 @@ import { Image } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { ScreenSize } from '../utils';
 
-import { HostList, ViewGuest, ViewHouse, ViewRoom, ViewBill } from "../screens"
+import { ForgotPassword1, ForgotPassword2, ForgotPassword3, ForgotPassword4 } from "../screens"
 
 const Stack = createStackNavigator();
 
@@ -28,20 +28,20 @@ const HeaderStyle = {
         },
         headerTitleStyle: {fontSize: ScreenSize.width * 0.06},
         headerTintColor: "black",
-        headerBackTitleVisible: false
+        headerBackTitleVisible: false,
+        title: 'Quên mật khẩu'
 }
 
-export const HostViewStack = () => {
+export const ForgotPasswordStack = () => {
   return (
     <Stack.Navigator
     screenOptions={HeaderStyle}
-    initialRouteName="HostList"
+    initialRouteName="ForgotPassword1"
   >
-    <Stack.Screen name="HostList" component={HostList} options={{ title: 'Nhà trọ của bạn' }}/>
-    <Stack.Screen name="ViewHouse" component={ViewHouse} options={({ route }) => ({ title: route.params.name })}/>
-    <Stack.Screen name="ViewRoom" component={ViewRoom} options={({ route }) => ({ title: route.params.name })}/>
-    <Stack.Screen name="ViewGuest" component={ViewGuest} options={({ route }) => ({ title: route.params.name })}/>
-    <Stack.Screen name="ViewBill" component={ViewBill} options={({ route }) => ({ title: route.params.name })}/>
+    <Stack.Screen name="ForgotPassword1" component={ForgotPassword1}/>
+    <Stack.Screen name="ForgotPassword2" component={ForgotPassword2}/>
+    <Stack.Screen name="ForgotPassword3" component={ForgotPassword3}/>
+    <Stack.Screen name="ForgotPassword4" component={ForgotPassword4} options={{ headerShown: false }}/>
   </Stack.Navigator>
   );
 };

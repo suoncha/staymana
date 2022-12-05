@@ -1,13 +1,17 @@
 import React from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
 
-export function ViewGuest({ navigation}) {
+export function GuestViewRoom({route, navigation}) {
     return (
       <View style={styles.center}>
 
+    <Button
+        title={'Hóa đơn tháng 9'}
+        onPress={() => navigation.navigate("GuestViewBill")}
+      />
       <Button
-        title="Xóa người thuê"
-        onPress={() => navigation.goBack()}
+        title={'Hóa đơn tháng 10'}
+        onPress={() => navigation.navigate("GuestViewBill")}
       />
     </View>
     );
