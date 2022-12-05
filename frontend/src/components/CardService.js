@@ -1,17 +1,23 @@
 import { ScreenSize, TextStyle } from "../utils";
-import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Pressable } from "react-native";
 import { Avatar } from "react-native-paper";
+import { useNavigation } from '@react-navigation/native';
 
 export const CardService = (props) => {
+  const navigation = useNavigation();
+
   return (
+    <Pressable onPress={() => navigation.navigate(props.data.navigate)}>
     <View style={styles.container}>
       <Avatar.Image
         size={(80 / 375) * ScreenSize.width}
-        source={props.image}
+        source={props.data.image}
         style={styles.image}
       />
-      <Text style={{ ...TextStyle.h3, ...styles.text }}>{props.name}</Text>
-    </View>
+      <Text style={{ ...TextStyle.h3, ...styles.text }}>{props.data.name}</Text>
+      </View>
+      </Pressable>
+
   );
 };
 
