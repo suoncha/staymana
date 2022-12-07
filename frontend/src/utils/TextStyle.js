@@ -25,7 +25,7 @@ export const TextStyle = StyleSheet.create({
   },
   h3: {
     // fontFamily: "Lato_700Bold",
-    fontWeight: '700',
+    fontWeight: "700",
     fontSize: 16,
     lineHeight: 22,
   },

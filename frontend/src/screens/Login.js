@@ -5,25 +5,29 @@ import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
 import AnimatedSplash from "react-native-animated-splash-screen";
 import { ScreenSize } from "../utils";
 // Navigation
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { HostStack, GuestStack, SignUpStack, ForgotPasswordStack } from "../navigation";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import {
+  HostStack,
+  GuestStack,
+  SignUpStack,
+  ForgotPasswordStack,
+} from "../navigation";
 
 const AuthContext = React.createContext();
 
 export function LoginHandler() {
-
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
       switch (action.type) {
-        case 'SIGN_IN':
+        case "SIGN_IN":
           return {
             ...prevState,
             isSignout: false,
             userToken: action.token,
             hostRole: action.hostRole,
           };
-        case 'SIGN_OUT':
+        case "SIGN_OUT":
           return {
             ...prevState,
             isSignout: true,
@@ -37,15 +41,19 @@ export function LoginHandler() {
       hostRole: false,
     }
   );
-  
+
   const authContext = React.useMemo(
     () => ({
       signIn: async (data) => {
-        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token', hostRole: data.hostRole });
+        dispatch({
+          type: "SIGN_IN",
+          token: "dummy-auth-token",
+          hostRole: data.hostRole,
+        });
       },
-      signOut: () => dispatch({ type: 'SIGN_OUT' }),
+      signOut: () => dispatch({ type: "SIGN_OUT" }),
       signUp: async (data) => {
-        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
+        dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
       },
     }),
     []
@@ -55,55 +63,74 @@ export function LoginHandler() {
 
   const backButtonImg = () => {
     return (
-      <Image 
-        source={require('../images/backButton.png')}
+      <Image
+        source={require("../images/backButton.png")}
         style={{
           height: ScreenSize.width * 0.1,
           width: ScreenSize.width * 0.1,
           marginLeft: ScreenSize.width * 0.06,
         }}
       />
-    )
-  }
-  
+    );
+  };
+
   const HeaderStyle = {
-      headerBackImage: backButtonImg,
-          headerStyle: {
-            backgroundColor: "white",
-            height: ScreenSize.height * 0.156
-          },
-          headerTitleStyle: {fontSize: ScreenSize.width * 0.06},
-          headerTintColor: "black",
-          headerBackTitleVisible: false,
-          title: 'Quên mật khẩu'
-  }
+    headerBackImage: backButtonImg,
+    headerStyle: {
+      backgroundColor: "white",
+      height: ScreenSize.height * 0.156,
+    },
+    headerTitleStyle: { fontSize: ScreenSize.width * 0.06 },
+    headerTintColor: "black",
+    headerBackTitleVisible: false,
+    title: "Quên mật khẩu",
+  };
 
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={HeaderStyle}>
+        <Stack.Navigator screenOptions={HeaderStyle}>
           {state.userToken == null ? (
             <>
-              <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
-              <Stack.Screen name="LoginRole" component={LoginRole} options={{ title: 'Đăng nhập' }}/>
-              <Stack.Screen name="ForgotPassword" component={ForgotPasswordStack} options={{ headerShown: false }}/>
-              <Stack.Screen name="SignUp" component={SignUpStack} options={{ headerShown: false }}/>
+              <Stack.Screen
+                name="Login"
+                component={LoginScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="LoginRole"
+                component={LoginRole}
+                options={{ title: "Đăng nhập" }}
+              />
+              <Stack.Screen
+                name="ForgotPassword"
+                component={ForgotPasswordStack}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="SignUp"
+                component={SignUpStack}
+                options={{ headerShown: false }}
+              />
             </>
-            ) : (
-              state.hostRole ? (
-                <Stack.Screen name="HostStack" component={HostStack} options={{ headerShown: false }}/>
-              ) : (
-              <Stack.Screen name="GuestStack" component={GuestStack} options={{ headerShown: false }}/>
-              )
+          ) : state.hostRole ? (
+            <Stack.Screen
+              name="HostStack"
+              component={HostStack}
+              options={{ headerShown: false }}
+            />
+          ) : (
+            <Stack.Screen
+              name="GuestStack"
+              component={GuestStack}
+              options={{ headerShown: false }}
+            />
           )}
-          
         </Stack.Navigator>
       </NavigationContainer>
     </AuthContext.Provider>
   );
 }
-
 
 function LoginScreen({ navigation }) {
   const [loading, setLoading] = useState(false);
@@ -112,8 +139,8 @@ function LoginScreen({ navigation }) {
     setLoading(true);
   }, 2000);
 
-  const [username, setUsername] = React.useState('username');
-  const [password, setPassword] = React.useState('password');
+  const [username, setUsername] = React.useState("username");
+  const [password, setPassword] = React.useState("password");
 
   return (
     <AnimatedSplash
@@ -127,43 +154,44 @@ function LoginScreen({ navigation }) {
         <Text>Màn hình login</Text>
         <StatusBar style="auto" />
         <TextInput
-        placeholder="Username"
-        value={username}
-        onChangeText={setUsername}
+          placeholder="Username"
+          value={username}
+          onChangeText={setUsername}
         />
         <TextInput
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
         />
         <Button
-        title="Đăng nhập"
-        onPress={() =>  navigation.navigate("LoginRole", {username: username, password: password})}
+          title="Đăng nhập"
+          onPress={() =>
+            navigation.navigate("LoginRole", {
+              username: username,
+              password: password,
+            })
+          }
         />
+        <Button title="Đăng ký" onPress={() => navigation.navigate("SignUp")} />
         <Button
-        title="Đăng ký"
-        onPress={() => navigation.navigate("SignUp")}
-        />
-        <Button
-        title="Quên mật khẩu"
-        onPress={() => navigation.navigate("ForgotPassword")}
+          title="Quên mật khẩu"
+          onPress={() => navigation.navigate("ForgotPassword")}
         />
       </View>
-    
     </AnimatedSplash>
   );
 }
 
-function LoginRole({route, navigation}) {
+function LoginRole({ route, navigation }) {
   const { username, password } = route.params;
   const { signIn } = React.useContext(AuthContext);
   return (
-      <View style={styles.center}>
-        <Text>Tư cách đăng nhập</Text>
+    <View style={styles.center}>
+      <Text>Tư cách đăng nhập</Text>
       <Button
         title="Chủ trọ"
-        onPress={() => signIn({ username, password, hostRole: true})}
+        onPress={() => signIn({ username, password, hostRole: true })}
       />
       <Button
         title="Khách trọ"
@@ -186,5 +214,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    },
+  },
 });

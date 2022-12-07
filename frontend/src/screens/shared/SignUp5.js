@@ -1,23 +1,22 @@
 import React from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
 
-export function SignUp5({navigation}) {
-    return (
-        <View style={styles.center}>
-        <Button
-          title="Đăng nhập"
-          onPress={() => navigation.goBack(navigation.popToTop())}
-        />
-      </View>
-    );
+export function SignUp5({ navigation }) {
+  return (
+    <View style={styles.center}>
+      <Button
+        title="Đăng nhập"
+        onPress={() => navigation.goBack(navigation.popToTop())}
+      />
+    </View>
+  );
 }
 
-
 const styles = StyleSheet.create({
-    center: {
+  center: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    },
-  });
+  },
+});
