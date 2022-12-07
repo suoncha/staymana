@@ -16,7 +16,7 @@ export const InputText = (props) => {
       onChangeText={(text) => setText(text)}
       style={{
         ...TextStyle.h3,
-        fontWeight: '400',
+        fontWeight: "400",
         width: (327 / 375) * ScreenSize.width,
         backgroundColor: Color.white_100,
       }}

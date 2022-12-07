@@ -3,7 +3,7 @@ import { TextInput } from "react-native-paper";
 import { Color, TextStyle, ScreenSize } from "../../utils";
 
 export const InputInformation = (props) => {
-  const {title, information} = props;
+  const { title, information } = props;
   return (
     <TextInput
       label={title}
