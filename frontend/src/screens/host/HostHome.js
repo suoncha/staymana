@@ -14,7 +14,7 @@ import { ScreenSize } from "../../utils";
 
 export function HostHome({ navigation }) {
   return (
-    <View style={styles.page}>
+    <SafeAreaView>
       <View style={styles.header}>
         <View style={{ justifyContent: "flex-end", width: "50%" }}>
           <Image
@@ -39,7 +39,7 @@ export function HostHome({ navigation }) {
           />
         </View>
       </View>
-      <SafeAreaView style={{ marginHorizontal: 24 }}>
+      <View style={{ marginHorizontal: 24 }}>
         <WelcomeText name="Nguyễn Tuấn Minh" />
         <FlatList
           data={CardServiceData}
@@ -52,16 +52,13 @@ export function HostHome({ navigation }) {
           keyExtractor={(item, index) => index}
           style={{ marginTop: (48 / 812) * ScreenSize.height }}
         />
-        <StatusBar style="dark" />
-      </SafeAreaView>
-    </View>
+      </View>
+      <StatusBar style="dark" />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  page: {
-    flex: 1,
-  },
   container: {
     flex: 1,
     flexDirection: "column",
