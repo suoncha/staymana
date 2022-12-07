@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { ScreenSize } from '../utils';
 
-import { CreateHouse, CreateRoom, CreateBill, AddGuest, GuestDetail } from "../screens"
+import { CreateHouse, CreateRoom, CreateBill, AddGuest, GuestDetail, HostNotification } from "../screens"
 import { HostInfo } from "../screens"
 import { HostNavBar } from './HostNavBar';
 
@@ -27,8 +27,6 @@ function getHeaderTitle(route) {
   const routeName = getFocusedRouteNameFromRoute(route) ?? 'Feed';
 
   switch (routeName) {
-    case 'HostHome':
-      return 'Feed';
     case 'HostProfile':
       return 'Trang cá nhân';
     case 'HostChat':
@@ -36,11 +34,7 @@ function getHeaderTitle(route) {
   }
 }
 
-function renderTitle(route) {
-  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Feed';
-  if (routeName == 'HostViewStack') return false;
-  return true;
-}
+
 
 const HeaderStyle = {
     headerBackImage: backButtonImg,
@@ -50,7 +44,7 @@ const HeaderStyle = {
         },
         headerTitleStyle: {fontSize: ScreenSize.width * 0.06},
         headerTintColor: "black",
-        headerBackTitleVisible: false
+        headerBackTitleVisible: false,
 }
 
 export const HostStack = () => {
@@ -59,12 +53,13 @@ export const HostStack = () => {
       screenOptions={HeaderStyle}
       initialRouteName="Feed"
     >
-      <Stack.Screen name="Feed" component={HostNavBar} options={({ route }) => ({ headerTitle: getHeaderTitle(route), headerShown: renderTitle(route)})}/>
+      <Stack.Screen name="Feed" component={HostNavBar} options={{ headerShown: false }}/>
       <Stack.Screen name="CreateHouse" component={CreateHouse} options={{ title: 'Tạo nhà trọ' }}/>
       <Stack.Screen name="CreateRoom" component={CreateRoom} options={{ title: 'Tạo phòng trọ' }} initialParams={{ fromHouse: false }}/>
       <Stack.Screen name="CreateBill" component={CreateBill} options={{ title: 'Tạo hóa đơn' }}/>
       <Stack.Screen name="AddGuest" component={AddGuest} options={{ title: 'Quét mã QR' }}/>
       <Stack.Screen name="GuestDetail" component={GuestDetail} options={{ title: 'Thêm người' }}/>
+      <Stack.Screen name="HostNotification" component={HostNotification} options={{ title: 'Thông báo' }}/>
 
       <Stack.Screen name="HostInfo" component={HostInfo} options={{ title: 'Thông tin cá nhân' }}/>
     </Stack.Navigator>
