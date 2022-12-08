@@ -1,45 +1,47 @@
 import React from "react";
-import {
-  View,
-  Image,
-  Button,
-  StyleSheet,
-  SafeAreaView,
-  FlatList,
-} from "react-native";
-import { CardService, WelcomeText } from "../../components";
+import { View, Image, StyleSheet, SafeAreaView, FlatList } from "react-native";
+import { ButtonIcon, CardService, WelcomeText } from "../../components";
 import { CardServiceData } from "../../utils/CardServiceData";
 import { StatusBar } from "expo-status-bar";
-import { ScreenSize } from "../../utils";
+import { ButtonType, Color, ScreenSize } from "../../utils";
+import { Avatar } from "react-native-paper";
+import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 export function HostHome({ navigation }) {
   return (
-    <SafeAreaView>
-      <View style={styles.header}>
-        <View style={{ justifyContent: "flex-end", width: "50%" }}>
-          <Image
-            source={require("../../images/logo.png")}
-            style={styles.logo}
-          ></Image>
+    <SafeAreaView style={{ backgroundColor: Color.white_100, height: "100%" }}>
+      <View style={{ marginHorizontal: (24 / 375) * ScreenSize.width }}>
+        <View style={styles.header}>
+          <View style={{ justifyContent: "flex-end", width: "50%" }}>
+            <Image
+              source={require("../../images/logo.png")}
+              style={styles.logo}
+            ></Image>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "flex-end",
+              width: "50%",
+            }}
+          >
+            <ButtonIcon
+              type={ButtonType.OUTLINE}
+              iconName="bell-outline"
+              onPress={() => navigation.navigate("HostNotification")}
+            />
+            <Pressable
+              onPress={() => navigation.navigate("HostInfo")}
+              style={{ marginLeft: (12 / 375) * ScreenSize.width }}
+            >
+              <Avatar.Image
+                size={(40 / 375) * ScreenSize.width}
+                source={require("../../images/avatar.jpg")}
+              />
+            </Pressable>
+          </View>
         </View>
-        <View
-          style={{
-            justifyContent: "flex-end",
-            width: "50%",
-            backgroundColor: "red",
-          }}
-        >
-          <Button
-            title="Thông báo"
-            onPress={() => navigation.navigate("HostNotification")}
-          />
-          <Button
-            title="Avatar"
-            onPress={() => navigation.navigate("HostInfo")}
-          />
-        </View>
-      </View>
-      <View style={{ marginHorizontal: 24 }}>
         <WelcomeText name="Nguyễn Tuấn Minh" />
         <FlatList
           data={CardServiceData}
@@ -67,16 +69,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   header: {
-    backgroundColor: "white",
     width: "100%",
-    height: ScreenSize.height * 0.156,
+    height: (54 / 375) * ScreenSize.width,
     flexDirection: "row",
-    paddingTop: ScreenSize.height * 0.05,
+    marginVertical: (15 / 812) * ScreenSize.height,
   },
   logo: {
-    width: ScreenSize.width * 0.19,
-    height: ScreenSize.width * 0.15,
-    marginHorizontal: 24,
-    marginBottom: ScreenSize.height * 0.02,
+    width: (ScreenSize.width * 71) / 375,
+    height: "100%",
   },
 });
