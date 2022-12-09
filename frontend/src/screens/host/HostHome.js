@@ -37,7 +37,7 @@ export function HostHome({ navigation }) {
             >
               <Avatar.Image
                 size={(40 / 375) * ScreenSize.width}
-                source={require("../../images/avatar.jpg")}
+                source={{uri: "https://staymana.s3.ap-southeast-1.amazonaws.com/sample-avatar.jpg"}}
               />
             </Pressable>
           </View>

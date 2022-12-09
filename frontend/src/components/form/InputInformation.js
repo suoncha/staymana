@@ -9,8 +9,7 @@ export const InputInformation = (props) => {
       label={title}
       mode="outlined"
       value={information}
-      outlineColor={Color.primary_100}
-      activeOutlineColor={Color.primary_100}
+      outlineColor={Color.white_100}
       editable={false}
       style={{
         ...TextStyle.h3,

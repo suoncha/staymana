@@ -9,10 +9,10 @@ export const InputText = (props) => {
       label={props.title}
       placeholder={props.placeholder}
       placeholderTextColor={Color.grey_100}
-      mode="outlined"
+      mode="flat"
       value={text}
-      outlineColor={Color.primary_100}
-      activeOutlineColor={Color.primary_100}
+      outlineColor={Color.white_100}
+      activeOutlineColor={Color.white_100}
       onChangeText={(text) => setText(text)}
       style={{
         ...TextStyle.h3,

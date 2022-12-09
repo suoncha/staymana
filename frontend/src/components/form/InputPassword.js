@@ -22,7 +22,7 @@ export const InputPassword = (props) => {
         label="Mật khẩu"
         placeholder="Vui lòng nhập mật khẩu"
         placeholderTextColor={Color.grey_100}
-        mode="outlined"
+        mode="flat"
         value={password}
         outlineColor={Color.primary_100}
         activeOutlineColor={Color.primary_100}
