@@ -3,7 +3,7 @@ export class Color {
   static primary_80 = "rgba(43, 172, 252, 0.8)";
   static primary_60 = "rgba(43, 172, 252, 0.6)";
   static primary_40 = "rgba(43, 172, 252, 0.4)";
-  static primary_20 = "rgba(43, 172, 252, 0.4)";
+  static primary_20 = "rgba(43, 172, 252, 0.2)";
 
   static dark_100 = "#2E3034";
   static dark_80 = "rgba(46, 48, 52, 0.8)";
