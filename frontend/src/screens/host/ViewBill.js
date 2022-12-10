@@ -1,10 +1,41 @@
-import React from "react";
-import { View, Button, Text, StyleSheet } from "react-native";
-import { ButtonType, Color, ScreenSize, TextStyle } from "../../utils";
-import { ButtonOption, StatusLabel } from "../../components";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
+import { Color, customSize, ScreenSize, TextStyle } from "../../utils";
+import { ButtonOption, CardBill, StatusLabel } from "../../components";
+
+const listBill = [
+  {
+    room: "101",
+    time: "10/2022",
+    status: 0,
+    total: 777000,
+    due: "05/11/2022",
+  },
+  {
+    room: "102",
+    time: "10/2022",
+    status: 1,
+    total: 500000,
+    due: "05/11/2022",
+  },
+];
 
 export function ViewBill({ route, navigation }) {
   const { fromHouse } = route.params;
+  const [selected, setSelected] = useState(0);
+  const buttonColor = (index) => {
+    return index == selected ? Color.primary_100 : Color.white_100;
+  };
+  const textColor = (index) => {
+    return index == selected ? Color.white_100 : Color.primary_100;
+  };
   if (fromHouse)
     return (
       <View style={styles.container}>
@@ -22,6 +53,57 @@ export function ViewBill({ route, navigation }) {
         </View>
         <View style={styles.list}>
           <Text style={{ ...TextStyle.h3 }}>Danh sách hóa đơn</Text>
+          <View style={{ flexDirection: "row", marginTop: customSize(24) }}>
+            <Pressable onPress={() => setSelected(0)}>
+              <View
+                style={{
+                  ...styles.buttonGroup,
+                  width: customSize(85),
+                  backgroundColor: buttonColor(0),
+                  borderTopLeftRadius: 4,
+                  borderBottomLeftRadius: 4,
+                }}
+              >
+                <Text style={{ ...TextStyle.h4, color: textColor(0) }}>
+                  Tất cả
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable onPress={() => setSelected(1)}>
+              <View
+                style={{
+                  ...styles.buttonGroup,
+                  backgroundColor: buttonColor(1),
+                  width: customSize(129),
+                }}
+              >
+                <Text style={{ ...TextStyle.h4, color: textColor(1) }}>
+                  Chưa thanh toán
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable onPress={() => setSelected(2)}>
+              <View
+                style={{
+                  ...styles.buttonGroup,
+                  width: customSize(113),
+                  backgroundColor: buttonColor(2),
+                  borderTopRightRadius: 4,
+                  borderBottomRightRadius: 4,
+                }}
+              >
+                <Text style={{ ...TextStyle.h4, color: textColor(2) }}>
+                  Đã thanh toán
+                </Text>
+              </View>
+            </Pressable>
+          </View>
+          <FlatList
+            data={listBill}
+            renderItem={({ item }) => <CardBill bill={item} />}
+            numColumns={1}
+            keyExtractor={(item, index) => index}
+          />
         </View>
       </View>
     );
@@ -38,5 +120,12 @@ const styles = StyleSheet.create({
   },
   func: {
     marginVertical: (24 / 812) * ScreenSize.height,
+  },
+  buttonGroup: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: customSize(24),
+    borderWidth: 1,
+    borderColor: Color.primary_100,
   },
 });
