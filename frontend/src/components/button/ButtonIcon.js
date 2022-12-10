@@ -39,6 +39,5 @@ const styles = StyleSheet.create({
     borderRadius: (44 / 375) * ScreenSize.width,
     width: (40 / 375) * ScreenSize.width,
     height: (40 / 375) * ScreenSize.width,
-    padding: (11 / 812) * ScreenSize.height,
   },
 });

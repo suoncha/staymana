@@ -3,14 +3,14 @@ import { View, Image, StyleSheet, SafeAreaView, FlatList } from "react-native";
 import { ButtonIcon, CardService, WelcomeText } from "../../components";
 import { CardServiceData } from "../../utils/CardServiceData";
 import { StatusBar } from "expo-status-bar";
-import { ButtonType, Color, ScreenSize } from "../../utils";
+import { ButtonType, Color, ScreenSize, customSize } from "../../utils";
 import { Avatar } from "react-native-paper";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 export function HostHome({ navigation }) {
   return (
     <SafeAreaView style={{ backgroundColor: Color.white_100, height: "100%" }}>
-      <View style={{ marginHorizontal: (24 / 375) * ScreenSize.width }}>
+      <View style={{ marginHorizontal: customSize(24) }}>
         <View style={styles.header}>
           <View style={{ justifyContent: "flex-end", width: "50%" }}>
             <Image
@@ -33,10 +33,10 @@ export function HostHome({ navigation }) {
             />
             <Pressable
               onPress={() => navigation.navigate("HostInfo")}
-              style={{ marginLeft: (12 / 375) * ScreenSize.width }}
+              style={{ marginLeft: customSize(12) }}
             >
               <Avatar.Image
-                size={(40 / 375) * ScreenSize.width}
+                size={customSize(40)}
                 source={{uri: "https://staymana.s3.ap-southeast-1.amazonaws.com/sample-avatar.jpg"}}
               />
             </Pressable>
@@ -52,7 +52,7 @@ export function HostHome({ navigation }) {
           )}
           numColumns={2}
           keyExtractor={(item, index) => index}
-          style={{ marginTop: (48 / 812) * ScreenSize.height }}
+          style={{ marginTop: customSize(48) }}
         />
       </View>
       <StatusBar style="dark" />
@@ -70,12 +70,12 @@ const styles = StyleSheet.create({
   },
   header: {
     width: "100%",
-    height: (54 / 375) * ScreenSize.width,
+    height: customSize(54),
     flexDirection: "row",
-    marginVertical: (15 / 812) * ScreenSize.height,
+    marginVertical: customSize(15),
   },
   logo: {
-    width: (ScreenSize.width * 71) / 375,
+    width: customSize(71),
     height: "100%",
   },
 });
