@@ -34,6 +34,7 @@ const HeaderStyle = {
   headerTitleStyle: { fontSize: ScreenSize.width * 0.06 },
   headerTintColor: "black",
   headerBackTitleVisible: false,
+  headerTitleAlign: 'center',
   title: "Quên mật khẩu",
 };
 

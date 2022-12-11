@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
-
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 export function CreateHouse({ navigation }) {
   return (
     <View style={styles.center}>
