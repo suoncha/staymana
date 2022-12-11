@@ -9,8 +9,9 @@ import { GuestViewStack } from "./GuestViewStack";
 const size = ScreenSize.width * 0.1;
 const selectedLabel = "_____";
 const styles = {
-  paddingRight: ScreenSize.width * 0.1,
+  marginRight: -ScreenSize.width * 0.025,
   marginTop: -ScreenSize.height * 0.015,
+  marginLeft: -ScreenSize.width * 0.025,
 };
 
 const Tab = createMaterialBottomTabNavigator();
