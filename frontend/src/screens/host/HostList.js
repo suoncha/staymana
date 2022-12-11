@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, Pressable } from "react-native";
 import { ScreenSize } from "../../utils";
 import { HouseCard } from "../../components";
 
@@ -40,9 +40,9 @@ export function HostList({ navigation }) {
       <SafeAreaView>
         <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
           {houseList.map(house => (
-          <TouchableOpacity onPress={() => navigation.navigate("ViewHouse", { name: house.name })}>
+          <Pressable onPress={() => navigation.navigate("ViewHouse", { name: house.name })}>
            <HouseCard avatar={house.avatar} name={house.name} address={house.address}/>
-          </TouchableOpacity>
+          </Pressable>
           ))}
           <View style={{height: ScreenSize.height * 0.32}}></View>
         </ScrollView>
