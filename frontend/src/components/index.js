@@ -11,5 +11,6 @@ export { ButtonHalfWidth } from "./button/ButtonHalfWidth";
 export { ButtonSmall } from "./button/ButtonSmall";
 export { ButtonIcon } from "./button/ButtonIcon";
 export { ButtonOption } from "./button/ButtonOption";
+export { HouseCard } from "./card/HouseCard";
 export { NotificationUnseen } from "./notification/NotificationUnseen";
 export { NotificationSeen } from "./notification/NotificationSeen";
