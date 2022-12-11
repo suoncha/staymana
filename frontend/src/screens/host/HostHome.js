@@ -1,15 +1,14 @@
 import React from "react";
-import { View, Image, StyleSheet, SafeAreaView, FlatList } from "react-native";
+import { View, Image, StyleSheet, SafeAreaView, FlatList, Platform, StatusBar} from "react-native";
 import { ButtonIcon, CardService, WelcomeText } from "../../components";
 import { CardServiceData } from "../../utils/CardServiceData";
-import { StatusBar } from "expo-status-bar";
 import { ButtonType, Color, ScreenSize, customSize } from "../../utils";
 import { Avatar } from "react-native-paper";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 export function HostHome({ navigation }) {
   return (
-    <SafeAreaView style={{ backgroundColor: Color.white_100, height: "100%" }}>
+    <SafeAreaView style={{ backgroundColor: Color.white_100, height: "100%"}}>
       <View style={{ marginHorizontal: customSize(24) }}>
         <View style={styles.header}>
           <View style={{ justifyContent: "flex-end", width: "50%" }}>
@@ -55,7 +54,7 @@ export function HostHome({ navigation }) {
           style={{ marginTop: customSize(48) }}
         />
       </View>
-      <StatusBar style="dark" />
+      <StatusBar />
     </SafeAreaView>
   );
 }
