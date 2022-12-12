@@ -6,10 +6,14 @@ export const InputInformation = (props) => {
   const { title, information } = props;
   return (
     <TextInput
-      label={title}
-      mode="outlined"
+      label={
+        <Text style={{ ...TextStyle.h3, color: Color.dark_100 }}>{title}</Text>
+      }
+      mode="flat"
       value={information}
+      activeUnderlineColor={Color.grey_100}
       outlineColor={Color.white_100}
+      activeOutlineColor={Color.white_100}
       editable={false}
       style={{
         ...TextStyle.h3,

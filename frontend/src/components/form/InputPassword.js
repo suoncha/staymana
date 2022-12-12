@@ -1,5 +1,6 @@
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
-import { KeyboardAvoidingView } from "react-native";
+import { KeyboardAvoidingView, Text } from "react-native";
 import { TextInput } from "react-native-paper";
 import { Color, TextStyle, ScreenSize } from "../../utils";
 
@@ -19,11 +20,16 @@ export const InputPassword = (props) => {
   return (
     <KeyboardAvoidingView enabled>
       <TextInput
-        label="Mật khẩu"
+        label={
+          <Text style={{ ...TextStyle.h3, color: Color.dark_100 }}>
+            Mật khẩu
+          </Text>
+        }
         placeholder="Vui lòng nhập mật khẩu"
         placeholderTextColor={Color.grey_100}
         mode="flat"
         value={password}
+        activeUnderlineColor={Color.grey_100}
         outlineColor={Color.primary_100}
         activeOutlineColor={Color.primary_100}
         onChangeText={(password) => setPassword(password)}

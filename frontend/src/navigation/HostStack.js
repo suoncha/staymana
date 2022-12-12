@@ -30,17 +30,6 @@ const backButtonImg = () => {
   );
 };
 
-function getHeaderTitle(route) {
-  const routeName = getFocusedRouteNameFromRoute(route) ?? "Feed";
-
-  switch (routeName) {
-    case "HostProfile":
-      return "Trang cá nhân";
-    case "HostChat":
-      return "Tin nhắn";
-  }
-}
-
 const HeaderStyle = {
   headerBackImage: backButtonImg,
   headerStyle: {
@@ -50,6 +39,7 @@ const HeaderStyle = {
   headerTitleStyle: { fontSize: ScreenSize.width * 0.06 },
   headerTintColor: "black",
   headerBackTitleVisible: false,
+  headerTitleAlign: 'center',
 };
 
 export const HostStack = () => {
