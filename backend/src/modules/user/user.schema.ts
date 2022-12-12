@@ -17,10 +17,13 @@ export class User {
   password: string;
 
   @Prop()
-  email: string;
+  name: string;
 
   @Prop()
-  name: string;
+  identityNumber: string;
+
+  @Prop()
+  email: string;
 
   @Prop()
   avatar: string;
