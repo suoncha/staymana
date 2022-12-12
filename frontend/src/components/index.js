@@ -12,3 +12,4 @@ export { ButtonSmall } from "./button/ButtonSmall";
 export { ButtonIcon } from "./button/ButtonIcon";
 export { ButtonOption } from "./button/ButtonOption";
 export { HouseCard } from "./card/HouseCard";
+export { NotificationCard } from "./notification/NotificationCard";
