@@ -11,3 +11,6 @@ export { ButtonHalfWidth } from "./button/ButtonHalfWidth";
 export { ButtonSmall } from "./button/ButtonSmall";
 export { ButtonIcon } from "./button/ButtonIcon";
 export { ButtonOption } from "./button/ButtonOption";
+export { ButtonAddImage } from "./button/ButtonAddImage";
+export { SmallCard } from "./card/SmallCard";
+export { ButtonAddGuess } from "./button/ButtonAddGuess";
