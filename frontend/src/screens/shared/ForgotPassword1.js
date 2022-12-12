@@ -1,22 +1,31 @@
 import React from "react";
-import { View, Button, Text, StyleSheet } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
+import { Color, ScreenSize } from '../../utils'
+import { StepBar, ButtonFullWidth, InputText } from '../../components';
 
 export function ForgotPassword1({ navigation }) {
   return (
-    <View style={styles.center}>
-      <Button
-        title="Gửi OTP"
-        onPress={() => navigation.navigate("ForgotPassword2")}
-      />
+    <View style={styles.container}>
+      <StepBar step={1}></StepBar>
+      <View style={{...styles.container, paddingTop: ScreenSize.height * 0.03}}>
+        <Image 
+          source={require("../../images/logoImageOnly.png")}
+          style={{width: ScreenSize.width * 0.3, height: ScreenSize.width * 0.3}}
+        ></Image>
+        <InputText title="Vui lòng nhập số điện thoại đăng ký" placeholder="Nhập tên phòng trọ" rightIcon='check-circle-outline'></InputText>
+      </View>
+      
+      <View style={{paddingBottom: ScreenSize.height * 0.1}}>
+        <ButtonFullWidth content='Gửi OTP' onPress={() => navigation.navigate("ForgotPassword2")}></ButtonFullWidth>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  center: {
+  container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
+    backgroundColor: Color.white_100,
+    alignItems: 'center',
   },
 });

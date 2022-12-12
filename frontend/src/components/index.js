@@ -22,3 +22,4 @@ export { ModalAddSuccess } from "./modal/ModalAddSuccess";
 export { ModalAddFail } from "./modal/ModalAddFail";
 export { ModalNofDetail } from "./modal/ModalNofDetail";
 export { ModalRoomDetail } from "./modal/ModalRoomDetail";
+export { StepBar } from "./bar/StepBar";

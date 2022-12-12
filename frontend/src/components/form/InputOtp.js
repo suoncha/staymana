@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Dimensions, SafeAreaView, Text, View } from "react-native";
+import { Dimensions, SafeAreaView, Text, View, Pressable } from "react-native";
 import OTPInput from "react-native-otp";
 import { Color, initializeFonts, TextStyle } from "../../utils";
 
@@ -41,7 +41,9 @@ export const InputOtp = (props) => {
           <Text style={{ color: Color.grey_100 }}>
             Bạn chưa nhận được mã OTP?{" "}
           </Text>
-          <Text style={{ color: Color.primary_100 }}>Gửi lại mã</Text>
+          <Pressable>
+            <Text style={{ color: Color.primary_100 }}>Gửi lại mã</Text>
+          </Pressable>   
         </Text>
       </View>
     </SafeAreaView>

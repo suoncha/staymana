@@ -5,6 +5,7 @@ import { TextInput } from "react-native-paper";
 import { Color, TextStyle, ScreenSize } from "../../utils";
 
 export const InputPassword = (props) => {
+  const { title, information } = props;
   const [password, setPassword] = useState("");
   const [passwordVisibility, setPasswordVisibility] = useState(true);
   const [rightIcon, setRightIcon] = useState("eye");
@@ -22,7 +23,7 @@ export const InputPassword = (props) => {
       <TextInput
         label={
           <Text style={{ ...TextStyle.h3, color: Color.dark_100 }}>
-            Mật khẩu
+            {title}
           </Text>
         }
         placeholder="Vui lòng nhập mật khẩu"

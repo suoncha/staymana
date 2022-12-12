@@ -1,9 +1,8 @@
 // Screen
 import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
+import { StyleSheet, Text, View, Button, TextInput, Image, StatusBar } from "react-native";
 import AnimatedSplash from "react-native-animated-splash-screen";
-import { ScreenSize } from "../utils";
+import { ScreenSize, TextStyle } from "../utils";
 // Navigation
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -13,6 +12,7 @@ import {
   SignUpStack,
   ForgotPasswordStack,
 } from "../navigation";
+import { LoginFail } from "./shared/LoginFail";
 
 const AuthContext = React.createContext();
 
@@ -103,6 +103,11 @@ export function LoginHandler() {
                 options={{ title: "Đăng nhập" }}
               />
               <Stack.Screen
+                name="LoginFail"
+                component={LoginFail}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
                 name="ForgotPassword"
                 component={ForgotPasswordStack}
                 options={{ headerShown: false }}
@@ -128,6 +133,7 @@ export function LoginHandler() {
           )}
         </Stack.Navigator>
       </NavigationContainer>
+      <StatusBar barStyle={'dark-content'} />
     </AuthContext.Provider>
   );
 }
@@ -152,7 +158,6 @@ function LoginScreen({ navigation }) {
     >
       <View style={styles.container}>
         <Text>Màn hình login</Text>
-        <StatusBar style="auto" />
         <TextInput
           placeholder="Username"
           value={username}
@@ -179,24 +184,40 @@ function LoginScreen({ navigation }) {
           onPress={() => navigation.navigate("ForgotPassword")}
         />
       </View>
+      
     </AnimatedSplash>
   );
 }
+
+import { ButtonFullWidth } from '../components';
+import { Color } from '../utils'
+import { Divider } from "react-native-paper";
 
 function LoginRole({ route, navigation }) {
   const { username, password } = route.params;
   const { signIn } = React.useContext(AuthContext);
   return (
-    <View style={styles.center}>
-      <Text>Tư cách đăng nhập</Text>
-      <Button
-        title="Chủ trọ"
-        onPress={() => signIn({ username, password, hostRole: true })}
-      />
-      <Button
-        title="Khách trọ"
-        onPress={() => signIn({ username, password, hostRole: false })}
-      />
+    <View style={styles.container}>
+      <View style={{...styles.container}}>
+        <Image 
+          source={require("../images/logoImageOnly.png")}
+          style={{width: ScreenSize.width * 0.4, height: ScreenSize.width * 0.4}}
+        ></Image>
+        <Image 
+          source={require("../images/logoTextOnly.png")}
+          style={{width: ScreenSize.width * 0.68, height: ScreenSize.width * 0.12}}
+        ></Image>
+      </View>
+    
+      <View style={{paddingBottom: ScreenSize.height * 0.1}}>
+        <Divider style={{ color: Color.grey_100, height: ScreenSize.height * 0.001}} />
+        <View style={{padding: ScreenSize.height * 0.04}}></View>
+        <Text style={TextStyle.h3}>Bạn muốn đăng nhập với tư cách là</Text>
+        <View style={{padding: ScreenSize.height * 0.012}}></View>
+        <ButtonFullWidth content='Chủ trọ' onPress={() => signIn({ username, password, hostRole: true })}></ButtonFullWidth>
+        <View style={{padding: ScreenSize.height * 0.015}}></View>
+        <ButtonFullWidth content='Khách thuê trọ' onPress={() => signIn({ username, password, hostRole: false })}></ButtonFullWidth>
+      </View>
     </View>
   );
 }
@@ -215,4 +236,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     textAlign: "center",
   },
+
+  roleSelectView: {
+    flex: 1,
+    backgroundColor: Color.white_100,
+    alignItems: 'center',
+  },
+
 });
