@@ -12,6 +12,7 @@ export { ButtonSmall } from "./button/ButtonSmall";
 export { ButtonIcon } from "./button/ButtonIcon";
 export { ButtonOption } from "./button/ButtonOption";
 export { HouseCard } from "./card/HouseCard";
+export { NotificationCard } from "./notification/NotificationCard";
 export { ModalConfirmation } from "./modal/ModalConfirmation";
 export { ModalConfirmation2 } from "./modal/ModalConfirmation2";
 export { ModalAddSuccess } from "./modal/ModalAddSuccess";
