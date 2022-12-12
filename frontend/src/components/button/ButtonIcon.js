@@ -3,7 +3,7 @@ import { ButtonType, Color, ScreenSize } from "../../utils";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export const ButtonIcon = (props) => {
-  const { type, iconName, onPress } = props;
+  const { type, iconName, customSize, onPress } = props;
   const buttonColor =
     type == ButtonType.OUTLINE
       ? Color.white_100
@@ -20,12 +20,14 @@ export const ButtonIcon = (props) => {
         borderWidth: 1,
         borderColor:
           type == ButtonType.OUTLINE ? Color.primary_100 : buttonColor,
+        width: customSize ? customSize * (40 / 375) * ScreenSize.width : (40 / 375) * ScreenSize.width,
+        height: customSize ? customSize * (40 / 375) * ScreenSize.width : (40 / 375) * ScreenSize.width,
       }}
       onPress={onPress}
     >
       <MaterialCommunityIcons
         name={iconName}
-        size={(18.95 / 375) * ScreenSize.width}
+        size={customSize ? customSize * (18.95 / 375) * ScreenSize.width : (18.95 / 375) * ScreenSize.width}
         color={iconColor}
       />
     </Pressable>
