@@ -1,5 +1,5 @@
+import { Divider } from "@rneui/themed";
 import { Text, View } from "react-native";
-import { Divider } from "react-native-paper";
 import { Color, ScreenSize, TextStyle } from "../utils";
 
 export const WelcomeText = (props) => {
@@ -17,7 +17,7 @@ export const WelcomeText = (props) => {
           {props.name} 👋{" "}
         </Text>
       </View>
-      <Divider style={{ color: Color.grey_100 }} />
+      <Divider color={Color.grey_20} width={1} />
     </View>
   );
 };
