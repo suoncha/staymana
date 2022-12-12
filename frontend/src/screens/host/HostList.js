@@ -44,6 +44,7 @@ export function HostList({ navigation }) {
            <HouseCard avatar={house.avatar} name={house.name} address={house.address}/>
           </TouchableOpacity>
           ))}
+          <View style={{height: ScreenSize.height * 0.32}}></View>
         </ScrollView>
       </SafeAreaView>
     </View>
