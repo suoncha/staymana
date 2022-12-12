@@ -15,7 +15,7 @@ export class House {
   address: string;
 
   @Prop()
-  rule: string;
+  image: string;
 
   @Prop()
   hostId: string;
