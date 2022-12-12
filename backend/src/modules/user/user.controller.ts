@@ -1,52 +1,47 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Get,
+  HttpCode,
   HttpStatus,
   Param,
   Post,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Response } from 'express';
-import { Connection } from 'mongoose';
-import { InjectConnection } from '@nestjs/mongoose';
-import { CreateUserDto } from './dto/CreateUserDto';
+import { CreateUserDto } from './dtos/create-user.dto';
+import { CheckUserDto } from './dtos/check-user.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 
-@Controller('/user')
+@Controller('/users')
 export class UserController {
-  constructor(
-    @InjectConnection() private readonly mongoConnection: Connection,
-    private readonly userService: UserService,
-  ) {}
+  constructor(private readonly userService: UserService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   async getUsers() {
     return this.userService.getAllUsers();
   }
+
+  @UseGuards(JwtAuthGuard)
   @Get('/:id')
   async getUserById(@Param('id') id: string, @Res() res: Response) {
     const user: any = await this.userService.getUserById(id);
     return res.status(HttpStatus.OK).send(user);
   }
 
-  @Post('/register')
-  async createUser(@Body() createUserDto: CreateUserDto, @Res() res: Response) {
-    const session = await this.mongoConnection.startSession();
-    session.startTransaction();
-    try {
-      const newUser: any = await this.userService.createUser(
-        createUserDto,
-        session,
-      );
-      await session.commitTransaction();
-      return res.status(HttpStatus.CREATED).send(newUser);
-    } catch (error) {
-      await session.abortTransaction();
-      throw new BadRequestException(error);
-    } finally {
-      await session.endSession();
-    }
+  @Post('/validate')
+  @HttpCode(HttpStatus.OK)
+  async validateUser(@Body() checkUserDto: CheckUserDto) {
+    const user = await this.userService.getUserByRoleAndTel(checkUserDto);
+    return !user;
+  }
+
+  @Post()
+  @HttpCode(HttpStatus.CREATED)
+  async createUser(@Body() createUserDto: CreateUserDto) {
+    return await this.userService.createUser(createUserDto);
   }
 }
