@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, Text } from "react-native";
 import { ButtonAddImage, ButtonFullWidth, InputText, SmallCard, ButtonAddGuess } from "../../components";
 import { TextInput } from "react-native-paper";
 import { Color, TextStyle, ScreenSize } from "../../utils"
@@ -30,8 +30,10 @@ const roomList = [
 export function CreateHouse({ navigation }) {
   const [houseName, setHouseName] = React.useState("");
   return (
-    <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
-      <View style={styles.center}>
+      <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}
+        style={{ backgroundColor: Color.white_100}}
+      >
+        <View style={styles.center}>
         <ButtonAddImage style={styles.addImage}/>
         <View>
           <View style={styles.input}>
@@ -43,6 +45,7 @@ export function CreateHouse({ navigation }) {
               placeholderTextColor={Color.grey_100}
               mode="flat"
               value={houseName}
+              activeUnderlineColor={Color.grey_100}
               outlineColor={Color.white_100}
               activeOutlineColor={Color.white_100}
               onChangeText={(houseName) => setHouseName(houseName)}
@@ -52,10 +55,11 @@ export function CreateHouse({ navigation }) {
                 width: (327 / 375) * ScreenSize.width,
                 backgroundColor: Color.white_100,
               }}
+              right={<TextInput.Icon name='pencil-outline' />}
             />
           </View>
           <View style={styles.input}>
-            <InputText title="Địa chỉ nhà trọ" placeholder="Nhập địa chỉ nhà trọ"></InputText>
+            <InputText title="Địa chỉ nhà trọ" placeholder="Nhập địa chỉ nhà trọ" rightIcon='pencil-outline'></InputText>
           </View>
         </View>
         <View style={styles.roomContainer}>
