@@ -2,6 +2,7 @@ import * as React from "react";
 import { View, Image, Text } from "react-native";
 import { Color, initializeFonts, TextStyle } from "../../utils";
 import { ScreenSize } from "../../utils";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export const HouseCard = (props) => {
   const {
@@ -21,10 +22,7 @@ export const HouseCard = (props) => {
       />
       <Text style={TextStyle.h4}>{name}</Text>
       <View style={{flexDirection: "row"}}>
-        <Image
-          style={{width: 8, height: 10, marginTop: 5, marginRight: 4}}
-          source={require("../../images/location-icon.png")}
-        />
+        <MaterialCommunityIcons name={"map-marker-outline"} size={ScreenSize.width * 0.032} color={Color.grey_100} style={{marginTop: 3, marginRight: 3}}></MaterialCommunityIcons>
         <Text style={[TextStyle.bodySmall, {color: Color.grey_100}]}>{address}</Text>
       </View>
     </View>

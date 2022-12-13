@@ -12,7 +12,7 @@ export function ForgotPassword1({ navigation }) {
           source={require("../../images/logoImageOnly.png")}
           style={{width: ScreenSize.width * 0.3, height: ScreenSize.width * 0.3}}
         ></Image>
-        <InputText title="Vui lòng nhập số điện thoại đăng ký" placeholder="Nhập tên phòng trọ" rightIcon='check-circle-outline'></InputText>
+        <InputText title="Vui lòng nhập số điện thoại đăng ký" placeholder="Nhập số điện thoại" rightIcon='check-circle-outline' keyboardType="numeric"></InputText>
       </View>
       
       <View style={{paddingBottom: ScreenSize.height * 0.1}}>

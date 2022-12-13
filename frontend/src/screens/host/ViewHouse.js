@@ -1,40 +1,111 @@
+import { color } from "@rneui/base";
 import React from "react";
-import { View, Button, Text, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView, Pressable, Text } from "react-native";
+import { ButtonDropDown, SmallCard, InputText, ButtonAddGuess } from "../../components";
+import { Color, TextStyle, ScreenSize } from "../../utils"
+
+const roomList = [
+  {
+    avatar: "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
+    name: "Phòng 101",
+  },
+  {
+    avatar: "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
+    name: "Phòng 101",
+  },
+  {
+    avatar: "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
+    name: "Phòng 101",
+  },
+  {
+    avatar: "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
+    name: "Phòng 101",
+  },
+  {
+    avatar: "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
+    name: "Phòng 101",
+  },
+];
 
 export function ViewHouse({ route, navigation }) {
-  // fake data
-  const room1 = "Phòng 101";
-  const room2 = "Phòng 102";
   const { name } = route.params;
+  const address = "97 Lý Thường Kiệt, phường 12, quận 3...";
+  const rules ="1. Không gây ồn ào mất trật tự  2. Khôn...";
+  const [houseInfoStatus, setHouseInfoStatus] = React.useState(false);
+  const [roomListStatus, setRoomListStatus] = React.useState(false);
   return (
-    <View style={styles.center}>
-      <Button
-        title={room1}
-        onPress={() => navigation.navigate("ViewRoom", { name: room1 })}
-      />
-      <Button
-        title={room2}
-        onPress={() => navigation.navigate("ViewRoom", { name: room2 })}
-      />
-      <Button
-        title={"Xem hóa đơn"}
-        onPress={() =>
-          navigation.navigate("ViewBill", { name: name, fromHouse: true })
+    <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+      <View style={styles.center}>
+        <Pressable onPress={() => setHouseInfoStatus(!houseInfoStatus)} style={styles.dropDownButton}>
+          <ButtonDropDown icon="home-outline" title="Thông tin nhà trọ"/>
+        </Pressable>
+        {houseInfoStatus &&
+          <View>
+            <View style={styles.input}>
+              <InputText title="Tên nhà trọ" placeholder="Nhập tên nhà trọ" defaultValue={name}></InputText>
+            </View>
+            <View style={styles.input}>
+              <InputText title="Địa chỉ nhà trọ" placeholder="Nhập địa chỉ nhà trọ" defaultValue={address}></InputText>
+            </View>
+            <View style={styles.input}>
+              <InputText title="Nội quy nhà trọ" placeholder="Nhập nội quy nhà trọ" defaultValue={rules}></InputText>
+            </View>
+            <View style={styles.inline}>
+              <Pressable onPress={() =>
+                navigation.navigate("ViewBill", { name: name, fromHouse: true })
+              }>
+                <Text style={[TextStyle.h3, {color: Color.primary_100}]}>Xem hóa đơn</Text>
+              </Pressable>
+              <Pressable onPress={() => 
+                navigation.navigate("HostList")
+              }>
+                <Text style={[TextStyle.h3, {color: Color.red_100}]}>Xóa nhà trọ</Text>
+              </Pressable>
+            </View>
+          </View>
         }
-      />
-      <Button
-        title={"Thêm phòng"}
-        onPress={() => navigation.navigate("CreateRoom")}
-      />
-    </View>
+        <Pressable onPress={() => setRoomListStatus(!roomListStatus)} style={styles.dropDownButton}>
+          <ButtonDropDown icon="account-outline" title="Danh sách phòng trọ"/>
+        </Pressable>
+        {roomListStatus &&
+          <View style={styles.roomContainer}>
+            {roomList.map(room => <SmallCard avatar={room.avatar} name={room.name}/>)}
+              <ButtonAddGuess
+                title="Thêm phòng"
+                onPress={() => navigation.navigate("CreateRoom")}
+              />
+          </View>
+        }
+      </View>
+    </ScrollView>
+
   );
 }
 
 const styles = StyleSheet.create({
+  roomContainer:{
+    flexDirection: 'row', 
+    flexWrap: 'wrap',
+    marginLeft: 24,
+    marginBottom: 12,
+    marginTop: 24,
+  },
   center: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
+    marginBottom: 12,
+  },
+  input: {
+    marginTop: 24,
+  },
+  dropDownButton: {
+    marginTop: 24,
+  },
+  inline:{
+    marginTop: 12,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
