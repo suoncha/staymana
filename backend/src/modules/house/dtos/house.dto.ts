@@ -25,7 +25,4 @@ class RoomInfo {
 export class GetHousesDto {
   @IsDefined()
   hostId: string;
-
-  @IsDefined()
-  houseId: string;
 }

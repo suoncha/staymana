@@ -6,8 +6,8 @@ export const RoomSchema = new Schema(
     area: Number,
     rentalFee: Number,
     image: {type: String, default: ''},
-    houseId: String,
     hostId: String,
+    houseId: String,
     memberId: {type: [String], default: []},
     billId: {type: [String], default: []},
   }

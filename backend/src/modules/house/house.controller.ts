@@ -32,8 +32,8 @@ export class HouseController {
     return newHouse;
   }
 
-  @Get(":hostId")
-  async getHouses(@Param() getHousesDto: GetHousesDto) {
+  @Get()
+  async getHouses(@Body() getHousesDto: GetHousesDto) {
     return await this.houseService.getHouses(getHousesDto);
   }
 }

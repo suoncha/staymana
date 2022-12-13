@@ -20,9 +20,6 @@ export class HouseService {
   }
 
   async getHouses(getHousesDto: GetHousesDto) {
-    const houses = await this.houseModel.find(getHousesDto);
-    return houses.map((house) => ({
-      name: house.name
-    }))
+    return await this.houseModel.find(getHousesDto);
   }
 }

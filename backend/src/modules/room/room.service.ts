@@ -13,10 +13,6 @@ export class RoomService {
   }
 
   async getRooms(getRoomsDto: GetRoomsDto ) {
-    const rooms = await this.roomModel.find(getRoomsDto);
-    return rooms.map((room) => ({
-      image: room.image,
-      name: room.name,
-    }))
+    return await this.roomModel.find(getRoomsDto);
   }
 }
