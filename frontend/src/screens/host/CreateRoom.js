@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { ButtonAddImage, InputText, ButtonFullWidth, InputInformation } from "../../components"
-import { Color } from "../../utils";
+import { Color, ScreenSize } from "../../utils";
 
 export function CreateRoom({ route, navigation }) {
   // fromHouse là boolean để check nếu true thì là tạo room từ nhà trọ -> xử lý riêng
@@ -30,6 +30,7 @@ export function CreateRoom({ route, navigation }) {
         </View>
       </View>
       <ButtonFullWidth content="Tạo" onPress={() => navigation.goBack()} />
+      <View style={{marginTop: ScreenSize.height * 0.2}}></View>
     </View>
   </ScrollView>
   );

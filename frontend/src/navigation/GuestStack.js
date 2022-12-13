@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { ScreenSize } from "../utils";
 
-import { GuestInfo } from "../screens";
+import { GuestInfo, GuestNotification } from "../screens";
 import { GuestNavBar } from "./GuestNavBar";
 
 const Stack = createStackNavigator();
@@ -64,7 +64,11 @@ export const GuestStack = () => {
           headerShown: renderTitle(route),
         })}
       />
-
+      <Stack.Screen
+        name="GuestNotification"
+        component={GuestNotification}
+        options={{ title: "Thông báo" }}
+      />
       <Stack.Screen
         name="GuestInfo"
         component={GuestInfo}

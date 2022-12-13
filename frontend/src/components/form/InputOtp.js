@@ -1,11 +1,12 @@
 import * as React from "react";
+import { Keyboard } from "react-native";
 import { SafeAreaView, Text, View, Pressable } from "react-native";
-import OTPInput from "react-native-otp";
+import OTPTextView from "react-native-otp-textinput";
 import { Color, TextStyle, ScreenSize } from "../../utils";
 
 export const InputOtp = () => {
-  const [OTP, setOTP] = React.useState("");
-  
+  const [OTP, setOTP] = React.useState("")
+
   return (
     <SafeAreaView>
       <View style={{ flexDirection: "column", marginBottom: 26 }}>
@@ -16,19 +17,21 @@ export const InputOtp = () => {
           Nhập mã OTP được gửi đến số điện thoại của bạn
         </Text>
       </View>
-      <OTPInput
-        value={OTP}
-        onChange={(otp) => setOTP(otp)}
+      
+      <OTPTextView
+        inputCount={5}
+        handleTextChange={(OTP) => setOTP(OTP)}
         tintColor={Color.primary_40}
-        offTintColor={Color.grey_40}
-        cellStyle={{
-          width: (58 / 375) * ScreenSize.width,
-          height: 70,
-          borderRadius: 8,
-          fontSize: 30,
-          backgroundColor: Color.white_100,
+        offTintColor={Color.lightgrey_60}
+        textInputStyle={{
+          height: ScreenSize.height * 0.086,
+          width: ScreenSize.width * 0.15,
+          backgroundColor: Color.lightgrey_60,
+          borderWidth: 1,
+          borderRadius: 10,
+          fontSize:  30,
+          textAlign: 'center',
         }}
-        otpLength={5}
       />
       <View style={{ marginTop: ScreenSize.height * 0.02, flexDirection: 'row' }}>
         <Text style={{...TextStyle.h4, color: Color.grey_100 }}> Bạn chưa nhận được mã OTP? </Text>

@@ -8,8 +8,7 @@ export const InputDate = (props) => {
   const { title } = props;
 
   const [date, setDate] = useState(new Date())
-  const defaultPlatformState = Platform.OS == 'ios' ? true : false
-  const [dateShow, setDateShow] = useState(defaultPlatformState)
+  const [dateShow, setDateShow] = useState(false)
   const [dateText, setDateText] = useState(new Date())
   const dateChange = (event, selectedDate) => {
     const currentDate = selectedDate || date
@@ -20,8 +19,6 @@ export const InputDate = (props) => {
     const printDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear()
     setDateText(printDate)
   }
-
-
 
   return (
     <View>
@@ -41,15 +38,15 @@ export const InputDate = (props) => {
         width: (327 / 375) * ScreenSize.width,
         backgroundColor: Color.white_100,
       }}
-      right={<TextInput.Icon name='calendar-month' onPress={() => setDateShow(true)} />}
-
+      right={<TextInput.Icon name='calendar-month' onPress={() => setDateShow(!dateShow)} />}
 
     />
     {dateShow && (
         <DateTimePicker
         value={date}
         onChange={dateChange}
-        style={{}}
+        display={Platform.OS == 'ios'? 'inline' : 'default'}
+        themeVariant='light'
         />
     )}
     </View>

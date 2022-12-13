@@ -76,6 +76,7 @@ export function CreateHouse({ navigation }) {
           />
         </View>
         <ButtonFullWidth content="Tạo" onPress={() => navigation.popToTop()} />
+        <View style={{marginTop: ScreenSize.height * 0.05}}></View>
       </View>
     </ScrollView>
   );

@@ -45,6 +45,7 @@ export function SignUp2({ navigation }) {
         <InputText title="Email" placeholder="Nhập email" rightIcon='check-circle-outline'></InputText>
       </View>
     </View>
+    <View style={{marginTop: ScreenSize.height * 0.2}}></View>
     </ScrollView>
     <View style={{paddingBottom: ScreenSize.height * 0.1, alignItems: 'center', paddingTop: ScreenSize.height * 0.05}}>
         <ButtonFullWidth content='Tiếp theo' onPress={() => navigation.navigate("SignUp3")}></ButtonFullWidth>
