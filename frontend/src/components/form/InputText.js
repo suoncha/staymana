@@ -4,8 +4,8 @@ import { TextInput } from "react-native-paper";
 import { Color, TextStyle, ScreenSize } from "../../utils";
 
 export const InputText = (props) => {
-  const { title, placeholder, rightIcon, onPress } = props;
-  const [text, setText] = React.useState("");
+  const { title, placeholder, rightIcon, onPress, defaultValue } = props;
+  const [text, setText] = React.useState();
   const [filledFlag, setFilledFlag] = React.useState(false);
   return (
     <TextInput
@@ -15,6 +15,7 @@ export const InputText = (props) => {
       placeholder={placeholder}
       placeholderTextColor={Color.grey_100}
       mode="flat"
+      defaultValue={defaultValue}
       value={props.unit && (filledFlag && text + " " +props.unit) || text}
       activeUnderlineColor={Color.grey_100}
       outlineColor={Color.white_100}

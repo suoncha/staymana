@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { Text, View, StyleSheet, ScrollView } from "react-native";
 import { ButtonAddImage, ButtonFullWidth, InputText, SmallCard, ButtonAddGuess } from "../../components";
 import { TextInput } from "react-native-paper";
 import { Color, TextStyle, ScreenSize } from "../../utils"
@@ -30,13 +30,15 @@ const roomList = [
 export function CreateHouse({ navigation }) {
   const [houseName, setHouseName] = React.useState("");
   return (
-      <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
-        <View style={styles.center}>
+    <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+      <View style={styles.center}>
         <ButtonAddImage style={styles.addImage}/>
         <View>
           <View style={styles.input}>
             <TextInput
-              label={"Tên nhà trọ"}
+              label={
+                <Text style={{ ...TextStyle.h3, color: Color.dark_100 }}>Tên nhà trọ</Text>
+              }
               placeholder={"Nhập tên nhà trọ"}
               placeholderTextColor={Color.grey_100}
               mode="flat"
@@ -52,9 +54,6 @@ export function CreateHouse({ navigation }) {
               }}
             />
           </View>
-          {/* <View style={styles.input}>
-            <InputText title="Tên nhà trọ" placeholder="Nhập tên nhà trọ"></InputText>
-          </View> */}
           <View style={styles.input}>
             <InputText title="Địa chỉ nhà trọ" placeholder="Nhập địa chỉ nhà trọ"></InputText>
           </View>
