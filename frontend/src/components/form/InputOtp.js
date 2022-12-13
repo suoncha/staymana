@@ -1,34 +1,28 @@
 import * as React from "react";
-import { Dimensions, SafeAreaView, Text, View } from "react-native";
+import { SafeAreaView, Text, View, Pressable } from "react-native";
 import OTPInput from "react-native-otp";
-import { Color, initializeFonts, TextStyle } from "../../utils";
+import { Color, TextStyle, ScreenSize } from "../../utils";
 
-const width = Dimensions.get("window").width;
-
-export const InputOtp = (props) => {
+export const InputOtp = () => {
   const [OTP, setOTP] = React.useState("");
-  handleOTPChange = (otp) => {
-    setOTP(otp);
-  };
-  initializeFonts();
+  
   return (
     <SafeAreaView>
       <View style={{ flexDirection: "column", marginBottom: 26 }}>
         <View style={{ marginBottom: 4 }}>
-          <Text style={TextStyle.h2}>Xác thực Email</Text>
+          <Text style={TextStyle.h2}>Xác thực số điện thoại</Text>
         </View>
         <Text style={[TextStyle.h4, { color: Color.grey_100 }]}>
-          Nhập mã OTP được gửi đến email của bạn
+          Nhập mã OTP được gửi đến số điện thoại của bạn
         </Text>
       </View>
       <OTPInput
-        label={props.title}
         value={OTP}
-        onChange={handleOTPChange}
+        onChange={(otp) => setOTP(otp)}
         tintColor={Color.primary_40}
         offTintColor={Color.grey_40}
         cellStyle={{
-          width: (58 / 375) * width,
+          width: (58 / 375) * ScreenSize.width,
           height: 70,
           borderRadius: 8,
           fontSize: 30,
@@ -36,13 +30,11 @@ export const InputOtp = (props) => {
         }}
         otpLength={5}
       />
-      <View style={{ marginTop: 12 }}>
-        <Text style={TextStyle.h4}>
-          <Text style={{ color: Color.grey_100 }}>
-            Bạn chưa nhận được mã OTP?{" "}
-          </Text>
-          <Text style={{ color: Color.primary_100 }}>Gửi lại mã</Text>
-        </Text>
+      <View style={{ marginTop: ScreenSize.height * 0.02, flexDirection: 'row' }}>
+        <Text style={{...TextStyle.h4, color: Color.grey_100 }}> Bạn chưa nhận được mã OTP? </Text>
+        <Pressable>
+          <Text style={{...TextStyle.h4, color: Color.primary_100}}>Gửi lại mã</Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );

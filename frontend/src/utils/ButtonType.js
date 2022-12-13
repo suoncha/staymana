@@ -3,4 +3,5 @@ export const ButtonType = {
   OUTLINE: "outline",
   DISABLE: "disable",
   RED: "red",
+  GREEN: 'green',
 };
