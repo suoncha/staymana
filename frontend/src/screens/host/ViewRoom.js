@@ -17,9 +17,9 @@ const guestList = [
 export function ViewRoom({ route, navigation }) {
   const { name } = route.params;
   const area = "20";
-  const price ="3000000";
-  const [roomInfoStatus, setRoomInfoStatus] = React.useState(false);
-  const [guestListStatus, setGuestListStatus] = React.useState(false);
+  const price = "3000000";
+  const [roomInfoStatus, setRoomInfoStatus] = React.useState(true);
+  const [guestListStatus, setGuestListStatus] = React.useState(true);
   return (
     <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} style={{ backgroundColor: Color.white_100}}>
       <View style={styles.center}>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   input: {
-    marginTop: 24,
+    marginTop: 12,
   },
   dropDownButton: {
     marginTop: 24,

@@ -17,9 +17,9 @@ const roomList = [
 export function ViewHouse({ route, navigation }) {
   const { name } = route.params;
   const address = "97 Lý Thường Kiệt, phường 12, quận 3...";
-  const rules ="1. Không gây ồn ào mất trật tự  2. Khôn...";
-  const [houseInfoStatus, setHouseInfoStatus] = React.useState(false);
-  const [roomListStatus, setRoomListStatus] = React.useState(false);
+  const rules = "1. Không gây ồn ào mất trật tự  2. Khôn...";
+  const [houseInfoStatus, setHouseInfoStatus] = React.useState(true);
+  const [roomListStatus, setRoomListStatus] = React.useState(true);
   return (
     <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} style={{ backgroundColor: Color.white_100}}>
       <View style={styles.center}>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   input: {
-    marginTop: 24,
+    marginTop: 12,
   },
   dropDownButton: {
     marginTop: 24,
