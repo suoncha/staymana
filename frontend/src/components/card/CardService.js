@@ -1,4 +1,4 @@
-import { ScreenSize, TextStyle } from "../utils";
+import { ScreenSize, TextStyle } from "../../utils";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import { Avatar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
