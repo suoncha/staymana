@@ -138,7 +138,7 @@ export function LoginHandler() {
   );
 }
 
-import { Pressable } from "react-native";
+import { Pressable, ScrollView } from "react-native";
 import { InputPassword, InputText } from "../components";
 
 function LoginScreen({ navigation }) {
@@ -160,15 +160,10 @@ function LoginScreen({ navigation }) {
       backgroundColor={"#ffffff"}
       logoHeight={ScreenSize.width * 0.8}
       logoWidth={ScreenSize.height * 0.8}
-    >
+    > 
+      
       <View style={styles.container}>
-        {/* <TextInput
-          placeholder="Password"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        /> */}
-        
+        <ScrollView>
         <View style={{alignItems: "center",}}>
           <Image 
             source={require("../images/loginScreen.png")}
@@ -200,7 +195,7 @@ function LoginScreen({ navigation }) {
             <Text style={{...TextStyle.h3, color: Color.primary_100}}>Đăng ký</Text>
           </Pressable>
         </View>
-
+        </ScrollView>
       </View>
       
     </AnimatedSplash>

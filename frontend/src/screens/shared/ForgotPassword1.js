@@ -1,12 +1,14 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, ScrollView } from "react-native";
 import { Color, ScreenSize } from '../../utils'
 import { StepBar, ButtonFullWidth, InputText } from '../../components';
 
 export function ForgotPassword1({ navigation }) {
   return (
+
     <View style={styles.container}>
       <StepBar step={1}></StepBar>
+      <ScrollView>
       <View style={{...styles.container, paddingTop: ScreenSize.height * 0.03}}>
         <Image 
           source={require("../../images/logoImageOnly.png")}
@@ -14,7 +16,7 @@ export function ForgotPassword1({ navigation }) {
         ></Image>
         <InputText title="Vui lòng nhập số điện thoại đăng ký" placeholder="Nhập số điện thoại" rightIcon='check-circle-outline' keyboardType="numeric"></InputText>
       </View>
-      
+      </ScrollView>
       <View style={{paddingBottom: ScreenSize.height * 0.1}}>
         <ButtonFullWidth content='Gửi OTP' onPress={() => navigation.navigate("ForgotPassword2")}></ButtonFullWidth>
       </View>

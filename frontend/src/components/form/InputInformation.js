@@ -4,7 +4,7 @@ import { Text } from "react-native";
 import { Color, TextStyle, ScreenSize } from "../../utils";
 
 export const InputInformation = (props) => {
-  const { title, information } = props;
+  const { title, information, rightIcon, onPress } = props;
   return (
     <TextInput
       label={
