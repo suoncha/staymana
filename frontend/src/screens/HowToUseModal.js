@@ -1,10 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { ButtonAddImage, InputText, ButtonFullWidth, InputInformation } from "../../components"
 import { Color } from "../../utils";
+// Sử dụng Modal
+import { Modal } from "react-native";
+import { ModalConfirmation } from "../../components";
 
 export function CreateRoom({ route, navigation }) {
-  // fromHouse là boolean để check nếu true thì là tạo room từ nhà trọ -> xử lý riêng
+  // Hiển thị và lấy thông tin từ Modal
+  // Vô Modal Component đọc button value để xử lý theo output trả về
+  // VD: ModalConfirmation: 
+  // - bấm nút trái: modalOutput == leftValue
+  // - bấm nút phải: modalOutput == rightValue
+  const [showModal, setShowModal] = useState(false)
+  const [modalOutput, getModalOutput] = useState()
+
   const { fromHouse } = route.params;
   return (
     <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} 
@@ -29,7 +39,23 @@ export function CreateRoom({ route, navigation }) {
           }      
         </View>
       </View>
-      <ButtonFullWidth content="Tạo" onPress={() => navigation.goBack()} />
+
+      {/* Mở modal */}
+      <ButtonFullWidth content="Tạo" onPress={() => setShowModal(true)} />
+
+      {/* Tạo modal */}
+      <Modal
+          transparent={true}
+          visible={showModal}
+          animationType='slide' // optional
+        >
+          {/* Nhét Modal component */}
+          <ModalConfirmation 
+            changeModalVisible={setShowModal} setData={getModalOutput} // Bắt buộc
+            content="Chắc chưa?" leftButton="Ừa" rightButton="Hong" // Hiển thị
+          />
+      </Modal>
+
     </View>
   </ScrollView>
   );
