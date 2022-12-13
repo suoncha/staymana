@@ -161,10 +161,10 @@ function LoginScreen({ navigation }) {
       logoHeight={ScreenSize.width * 0.8}
       logoWidth={ScreenSize.height * 0.8}
     > 
-      
-      <View style={styles.container}>
-        <ScrollView>
+      <ScrollView style={{backgroundColor: Color.white_100}}>
+      <View style={{ alignItems: "center", paddingVertical: ScreenSize.height * 0.15}}>
         <View style={{alignItems: "center",}}>
+        
           <Image 
             source={require("../images/loginScreen.png")}
             style={{width: ScreenSize.width * 0.67, height: ScreenSize.width * 0.4}}
@@ -174,6 +174,7 @@ function LoginScreen({ navigation }) {
             source={require("../images/logoTextOnly.png")}
             style={{width: ScreenSize.width * 0.68, height: ScreenSize.width * 0.12}}
           ></Image>
+          
         </View>
         <InputText title="Số điện thoại" placeholder="Nhập số điện thoại" rightIcon='check-circle-outline' keyboardType="numeric"></InputText>
         <InputPassword title='Mật khẩu'></InputPassword>
@@ -189,15 +190,17 @@ function LoginScreen({ navigation }) {
           </View>
         </View>
         <ButtonFullWidth content='Đăng nhập' onPress={() => navigation.navigate("LoginRole", {username: username, password: password})}></ButtonFullWidth>
+            
         <View style={{ marginTop: ScreenSize.height * 0.02, flexDirection: 'row' }}>
           <Text style={{...TextStyle.h3, color: Color.grey_100 }}>Chưa có tài khoản? </Text>
           <Pressable onPress={() => navigation.navigate("SignUp")}>
             <Text style={{...TextStyle.h3, color: Color.primary_100}}>Đăng ký</Text>
           </Pressable>
         </View>
-        </ScrollView>
+
       </View>
-      
+
+      </ScrollView>
     </AnimatedSplash>
   );
 }
