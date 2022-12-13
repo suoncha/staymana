@@ -59,7 +59,13 @@ export function CreateHouse({ navigation }) {
           </View>
         </View>
         <View style={styles.roomContainer}>
-          {roomList.map(room => <SmallCard avatar={room.avatar} name={room.name}/>)}
+            {roomList.map(room => 
+              <SmallCard 
+                avatar={room.avatar} 
+                name={room.name}
+                onPress={() => navigation.navigate("ViewRoom", { name: room.name})}
+              />
+            )}
           <ButtonAddGuess
             title="Thêm phòng"
             onPress={() => navigation.navigate("CreateRoom", { fromHouse: true, houseName: houseName})}

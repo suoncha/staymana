@@ -15,8 +15,8 @@ export const InputText = (props) => {
       placeholder={placeholder}
       placeholderTextColor={Color.grey_100}
       mode="flat"
-      defaultValue={defaultValue}
-      value={props.unit && (filledFlag && text + " " +props.unit) || text}
+      defaultValue={props.unit && defaultValue && defaultValue + " " + props.unit || defaultValue}
+      value={props.unit && (filledFlag && text + " " + props.unit) || text}
       activeUnderlineColor={Color.grey_100}
       outlineColor={Color.white_100}
       activeOutlineColor={Color.white_100}

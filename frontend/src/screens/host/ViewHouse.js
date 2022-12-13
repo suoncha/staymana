@@ -1,8 +1,7 @@
-import { color } from "@rneui/base";
 import React from "react";
 import { View, StyleSheet, ScrollView, Pressable, Text } from "react-native";
 import { ButtonDropDown, SmallCard, InputText, ButtonAddGuess } from "../../components";
-import { Color, TextStyle, ScreenSize } from "../../utils"
+import { Color, TextStyle } from "../../utils"
 
 const roomList = [
   {
@@ -10,20 +9,8 @@ const roomList = [
     name: "Phòng 101",
   },
   {
-    avatar: "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
-    name: "Phòng 101",
-  },
-  {
-    avatar: "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
-    name: "Phòng 101",
-  },
-  {
-    avatar: "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
-    name: "Phòng 101",
-  },
-  {
-    avatar: "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
-    name: "Phòng 101",
+    avatar: "https://ghsc.vn/wp-content/uploads/2020/06/t%E1%BB%B1-trang-tr%C3%AD-ph%C3%B2ng-ng%E1%BB%A7-%C4%91%C6%A1n-gi%E1%BA%A3n-b%E1%BA%B1ng-tranh-k%E1%BB%B7-ni%E1%BB%87m-1.jpg",
+    name: "Phòng 102",
   },
 ];
 
@@ -34,7 +21,7 @@ export function ViewHouse({ route, navigation }) {
   const [houseInfoStatus, setHouseInfoStatus] = React.useState(false);
   const [roomListStatus, setRoomListStatus] = React.useState(false);
   return (
-    <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+    <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} style={{ backgroundColor: Color.white_100}}>
       <View style={styles.center}>
         <Pressable onPress={() => setHouseInfoStatus(!houseInfoStatus)} style={styles.dropDownButton}>
           <ButtonDropDown icon="home-outline" title="Thông tin nhà trọ"/>
@@ -42,13 +29,13 @@ export function ViewHouse({ route, navigation }) {
         {houseInfoStatus &&
           <View>
             <View style={styles.input}>
-              <InputText title="Tên nhà trọ" placeholder="Nhập tên nhà trọ" defaultValue={name}></InputText>
+              <InputText title="Tên nhà trọ" placeholder="Nhập tên nhà trọ" defaultValue={name} rightIcon='pencil-outline'></InputText>
             </View>
             <View style={styles.input}>
-              <InputText title="Địa chỉ nhà trọ" placeholder="Nhập địa chỉ nhà trọ" defaultValue={address}></InputText>
+              <InputText title="Địa chỉ nhà trọ" placeholder="Nhập địa chỉ nhà trọ" defaultValue={address} rightIcon='pencil-outline'></InputText>
             </View>
             <View style={styles.input}>
-              <InputText title="Nội quy nhà trọ" placeholder="Nhập nội quy nhà trọ" defaultValue={rules}></InputText>
+              <InputText title="Nội quy nhà trọ" placeholder="Nhập nội quy nhà trọ" defaultValue={rules} rightIcon='pencil-outline'></InputText>
             </View>
             <View style={styles.inline}>
               <Pressable onPress={() =>
@@ -57,7 +44,7 @@ export function ViewHouse({ route, navigation }) {
                 <Text style={[TextStyle.h3, {color: Color.primary_100}]}>Xem hóa đơn</Text>
               </Pressable>
               <Pressable onPress={() => 
-                navigation.navigate("HostList")
+                navigation.goBack()
               }>
                 <Text style={[TextStyle.h3, {color: Color.red_100}]}>Xóa nhà trọ</Text>
               </Pressable>
@@ -65,15 +52,21 @@ export function ViewHouse({ route, navigation }) {
           </View>
         }
         <Pressable onPress={() => setRoomListStatus(!roomListStatus)} style={styles.dropDownButton}>
-          <ButtonDropDown icon="account-outline" title="Danh sách phòng trọ"/>
+          <ButtonDropDown icon="home-outline" title="Danh sách phòng trọ"/>
         </Pressable>
         {roomListStatus &&
           <View style={styles.roomContainer}>
-            {roomList.map(room => <SmallCard avatar={room.avatar} name={room.name}/>)}
-              <ButtonAddGuess
-                title="Thêm phòng"
-                onPress={() => navigation.navigate("CreateRoom")}
+            {roomList.map(room => 
+              <SmallCard 
+                avatar={room.avatar} 
+                name={room.name}
+                onPress={() => navigation.navigate("ViewRoom", { name: room.name })}
               />
+            )}
+            <ButtonAddGuess
+              title="Thêm phòng"
+              onPress={() => navigation.navigate("CreateRoom", { fromHouse: true, houseName: name})}
+            />
           </View>
         }
       </View>
