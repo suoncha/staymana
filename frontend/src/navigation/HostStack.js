@@ -1,7 +1,6 @@
 import React from "react";
 import { Image } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { ScreenSize } from "../utils";
 
 import {

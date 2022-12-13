@@ -1,7 +1,6 @@
 import React from "react";
 import { Image } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { ScreenSize } from "../utils";
 
 import { GuestInfo, GuestNotification } from "../screens";
@@ -22,25 +21,6 @@ const backButtonImg = () => {
   );
 };
 
-function getHeaderTitle(route) {
-  const routeName = getFocusedRouteNameFromRoute(route) ?? "";
-
-  switch (routeName) {
-    case "GuestProfile":
-      return "Trang cá nhân";
-    case "GuestChat":
-      return "Tin nhắn";
-    case "GuestHistory":
-      return "Lịch sử";
-  }
-}
-
-function renderTitle(route) {
-  const routeName = getFocusedRouteNameFromRoute(route) ?? "Feed";
-  if (routeName == "GuestHome") return false;
-  return true;
-}
-
 const HeaderStyle = {
   headerBackImage: backButtonImg,
   headerStyle: {
@@ -60,10 +40,6 @@ export const GuestStack = () => {
         name="Feed"
         component={GuestNavBar}
         options={{ headerShown: false }}
-        // options={({ route }) => ({
-        //   headerTitle: getHeaderTitle(route),
-        //   headerShown: renderTitle(route),
-        // })}
       />
       <Stack.Screen
         name="GuestNotification"
