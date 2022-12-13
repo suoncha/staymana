@@ -61,6 +61,5 @@ export const TextStyle = StyleSheet.create({
     fontSize: 12,
     lineHeight: 20,
     letterSpacing: 1,
-    textTransform: "uppercase",
   },
 });

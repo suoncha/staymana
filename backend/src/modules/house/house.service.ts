@@ -1,15 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { House, HouseDocument } from './house.schema';
 import { Model } from 'mongoose';
+import { CreateHouseDto, GetHousesDto } from './dtos/house.dto';
+import { House } from './house.model';
+import { RoomService } from 'src/modules/room/room.service';
+
 
 @Injectable()
 export class HouseService {
-  constructor(
-    @InjectModel(House.name) private houseModel: Model<HouseDocument>,
-  ) {}
+  constructor(@InjectModel('House') private readonly houseModel: Model<House>, private readonly roomService: RoomService) {}
 
-  async getAll(): Promise<House[]> {
-    return this.houseModel.find();
+  async createHouse(createHouseDto: CreateHouseDto) {
+    return await this.houseModel.create({
+      name: createHouseDto.name,
+      address: createHouseDto.address,
+      image: createHouseDto.image,
+      hostId: createHouseDto.hostId,
+    })
+  }
+
+  async getHouses(getHousesDto: GetHousesDto) {
+    return await this.houseModel.find(getHousesDto);
   }
 }

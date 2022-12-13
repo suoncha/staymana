@@ -9,7 +9,7 @@ const roomList = [
     name: "Phòng 101",
   },
   {
-    avatar: "https://ghsc.vn/wp-content/uploads/2020/06/t%E1%BB%B1-trang-tr%C3%AD-ph%C3%B2ng-ng%E1%BB%A7-%C4%91%C6%A1n-gi%E1%BA%A3n-b%E1%BA%B1ng-tranh-k%E1%BB%B7-ni%E1%BB%87m-1.jpg",
+    avatar: "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
     name: "Phòng 102",
   },
 ];
