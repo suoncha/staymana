@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateHouseDto, GetHousesDto } from '../dtos/house.dto';
-import { House } from '../models/house.model';
-import { RoomService } from 'src/modules/room/services/room.service';
+import { CreateHouseDto, GetHousesDto } from './dtos/house.dto';
+import { House } from './house.model';
+import { RoomService } from 'src/modules/room/room.service';
 
 
 @Injectable()

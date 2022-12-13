@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { HouseController } from './controllers/house.controller';
-import { HouseService } from './services/house.service';
+import { HouseController } from './house.controller';
+import { HouseService } from './house.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { HouseSchema } from './models/house.model';
+import { HouseSchema } from './house.model';
 import { RoomModule } from '../room/room.module';
 
 @Module({

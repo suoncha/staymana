@@ -1,10 +1,12 @@
-import { Body, Controller, Get, Post, Param } from '@nestjs/common';
-import { CreateHouseDto, GetHousesDto } from '../dtos/house.dto';
-import { HouseService } from '../services/house.service';
+import {Body, Controller, Get, Post, Param, UseGuards} from '@nestjs/common';
+import { CreateHouseDto, GetHousesDto } from './dtos/house.dto';
+import { HouseService } from './house.service';
 import { CreateRoomDto } from 'src/modules/room/dtos/room.dto';
-import { RoomService } from 'src/modules/room/services/room.service';
+import { RoomService } from 'src/modules/room/room.service';
+import {JwtAuthGuard} from "../auth/guards/jwt.guard";
 
 @Controller('/house')
+@UseGuards(JwtAuthGuard)
 export class HouseController {
   constructor(private readonly houseService: HouseService, private readonly roomService: RoomService ) {}
 
@@ -30,7 +32,7 @@ export class HouseController {
     return newHouse;
   }
 
-  @Get(":host_id")
+  @Get(":hostId")
   async getHouses(@Param() getHousesDto: GetHousesDto) {
     return await this.houseService.getHouses(getHousesDto);
   }
