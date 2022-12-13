@@ -39,7 +39,7 @@ export function ViewRoom({ route, navigation }) {
             </View>
             <View style={styles.inline}>
               <Pressable onPress={() =>
-                navigation.navigate("ViewBill", { name: name, fromHouse: true })
+                navigation.navigate("ViewBill", { name: name, fromHouse: false })
               }>
                 <Text style={[TextStyle.h3, {color: Color.primary_100}]}>Xem hóa đơn</Text>
               </Pressable>

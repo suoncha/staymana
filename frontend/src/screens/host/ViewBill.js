@@ -6,6 +6,7 @@ import {
   FlatList,
   TouchableOpacity,
   Pressable,
+  ScrollView
 } from "react-native";
 import { Color, customSize, ScreenSize, TextStyle } from "../../utils";
 import { ButtonOption, CardBill, StatusLabel } from "../../components";
@@ -36,9 +37,10 @@ export function ViewBill({ route, navigation }) {
   const textColor = (index) => {
     return index == selected ? Color.white_100 : Color.primary_100;
   };
-  if (fromHouse)
     return (
       <View style={styles.container}>
+        
+        { fromHouse ?
         <View>
           <Text style={{ ...TextStyle.h3 }}>Chức năng</Text>
           <View style={styles.func}>
@@ -50,7 +52,9 @@ export function ViewBill({ route, navigation }) {
               onPress={() => navigation.navigate("CreateBill")}
             />
           </View>
-        </View>
+        </View> : null
+        }
+
         <View style={{marginTop: customSize(24)}}>
           <Text style={{ ...TextStyle.h3 }}>Danh sách hóa đơn</Text>
           <View style={{ flexDirection: "row", marginTop: customSize(12) }}>
@@ -107,8 +111,6 @@ export function ViewBill({ route, navigation }) {
         </View>
       </View>
     );
-  // Else
-  return <View style={styles.center}></View>;
 }
 
 const styles = StyleSheet.create({

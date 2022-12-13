@@ -1,11 +1,12 @@
 import React from "react";
-import { View, Button, Text, StyleSheet } from "react-native";
+import { View, Button, Text, StyleSheet, ScrollView } from "react-native";
 import { ButtonHalfWidth, InputPassword, InputText } from "../../components";
 import { ButtonType, Color, ScreenSize, TextStyle } from "../../utils";
 
 export function CreateBill({ navigation }) {
   return (
     <View style={styles.container}>
+      <ScrollView style={{flex: 1}}>
       <Text style={{ ...TextStyle.h3 }}>Nhập thông tin hóa đơn</Text>
       <View style={styles.form}>
         <InputText
@@ -28,18 +29,21 @@ export function CreateBill({ navigation }) {
           onPress={() => alert("Hello")}
         />
       </View>
-      <View style={styles.action}>
-        <ButtonHalfWidth
-          type={ButtonType.DEFAULT}
-          content="Tạo"
-          onPress={() => navigation.goBack()}
-        />
-        <ButtonHalfWidth
-          type={ButtonType.RED}
-          content="Hủy"
-          onPress={() => navigation.goBack()}
-        />
+      <View style={{ paddingBottom: ScreenSize.height * 0.1}}>
+        <View style={styles.action}>
+          <ButtonHalfWidth
+            type={ButtonType.DEFAULT}
+            content="Tạo"
+            onPress={() => navigation.goBack()}
+          />
+          <ButtonHalfWidth
+            type={ButtonType.RED}
+            content="Hủy"
+            onPress={() => navigation.goBack()}
+          />
+        </View>
       </View>
+      </ScrollView>
     </View>
   );
 }
@@ -58,6 +62,6 @@ const styles = StyleSheet.create({
   action: {
     flexDirection: "row",
     justifyContent: "space-between",
-    top: (230 / 812) * ScreenSize.height,
+    top: (280 / 812) * ScreenSize.height,
   },
 });
