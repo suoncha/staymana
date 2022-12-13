@@ -1,26 +1,32 @@
 import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
-import { ButtonAddImage, InputText, ButtonFullWidth } from "../../components"
+import { ButtonAddImage, InputText, ButtonFullWidth, InputInformation } from "../../components"
+import { Color } from "../../utils";
 
 export function CreateRoom({ route, navigation }) {
   // fromHouse là boolean để check nếu true thì là tạo room từ nhà trọ -> xử lý riêng
   const { fromHouse } = route.params;
   return (
-    <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+    <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} 
+      style={{ backgroundColor: Color.white_100}}
+    >
       <View style={styles.center}>
       <ButtonAddImage style={styles.addImage}/>
       <View>
         <View style={styles.input}>
-          <InputText title="Tên phòng trọ" placeholder="Nhập tên phòng trọ"></InputText>
+          <InputText title="Tên phòng trọ" placeholder="Nhập tên phòng trọ" rightIcon='pencil-outline'></InputText>
         </View>
         <View style={styles.input}>
-          <InputText title="Diện tích phòng" placeholder="Nhập diện tích (m2)" keyboardType="numeric" unit="m2"></InputText>
+          <InputText title="Diện tích phòng" placeholder="Nhập diện tích (m2)" rightIcon='pencil-outline' keyboardType="numeric" unit="m2"></InputText>
         </View>
         <View style={styles.input}>
-          <InputText title="Giá thuê phòng" placeholder="Nhập giá thuê (đ)" keyboardType="numeric" unit="đ"></InputText>
+          <InputText title="Giá thuê phòng" placeholder="Nhập giá thuê (đ)" rightIcon='pencil-outline' keyboardType="numeric" unit="đ"></InputText>
         </View>
         <View style={styles.input}>
-          <InputText title={fromHouse && route.params.houseName || "Vui lòng nhập tên nhà trọ"} readonly={fromHouse}></InputText>
+          {fromHouse ?
+            <InputInformation title="Nhà trọ" information={fromHouse && route.params.houseName || "Bạn chưa nhập tên nhà trọ"}/>
+          : <InputText title="Nhà trọ" placeholder="Nhập tên nhà trọ"></InputText>
+          }      
         </View>
       </View>
       <ButtonFullWidth content="Tạo" onPress={() => navigation.goBack()} />

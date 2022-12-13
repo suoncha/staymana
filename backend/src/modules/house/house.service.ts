@@ -1,13 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import {InjectModel} from "@nestjs/mongoose";
-import {Host, HostDocument} from "./house.schema";
-import {Model} from "mongoose";
+import { InjectModel } from '@nestjs/mongoose';
+import { House, HouseDocument } from './house.schema';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class HouseService {
-  constructor(@InjectModel(Host.name) private hostModel: Model<HostDocument>) {}
+  constructor(
+    @InjectModel(House.name) private houseModel: Model<HouseDocument>,
+  ) {}
 
-  async getAllHost(): Promise<Host[]> {
-    return this.hostModel.find();
+  async getAll(): Promise<House[]> {
+    return this.houseModel.find();
   }
 }

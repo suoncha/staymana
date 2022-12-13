@@ -1,13 +1,36 @@
-import { Injectable } from '@nestjs/common';
-import {InjectModel} from "@nestjs/mongoose";
-import {Host, HostDocument} from "./user.schema";
-import {Model} from "mongoose";
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { User, UserDocument } from './user.schema';
+import { Model } from 'mongoose';
+import { CreateUserDto } from './dtos/create-user.dto';
+import { CheckUserDto } from './dtos/check-user.dto';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel(Host.name) private hostModel: Model<HostDocument>) {}
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  async getAllHost(): Promise<Host[]> {
-    return this.hostModel.find();
+  async getAllUsers(): Promise<User[]> {
+    return this.userModel.find();
+  }
+
+  async getUserById(id: string): Promise<User> {
+    const user = await this.userModel.findById(id);
+
+    if (!user) {
+      throw new NotFoundException('User not found!');
+    }
+
+    return user;
+  }
+
+  async getUserByRoleAndTel(checkUserDto: CheckUserDto): Promise<User> {
+    return this.userModel.findOne({
+      role: checkUserDto.role,
+      tel: checkUserDto.tel,
+    });
+  }
+
+  async createUser(createUserDto: CreateUserDto): Promise<User> {
+    return this.userModel.create(createUserDto);
   }
 }

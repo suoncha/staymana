@@ -1,38 +1,42 @@
-import {Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
-import {HydratedDocument} from "mongoose";
-import {UserRole} from "./constants/user-role";
-import {Gender} from "./constants/gender";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument } from 'mongoose';
+import { UserRole } from './constants/user-role';
+import { Gender } from './constants/gender';
 
-export type HostDocument = HydratedDocument<Host>;
+export type UserDocument = HydratedDocument<User>;
 
 @Schema()
-export class Host {
-    @Prop()
-    _id: string;
+export class User {
+  @Prop({ required: true })
+  role: UserRole;
 
-    @Prop()
-    role: UserRole;
+  @Prop({ required: true })
+  tel: string;
 
-    @Prop()
-    email: string;
+  @Prop({ required: true })
+  password: string;
 
-    @Prop()
-    password: string;
+  @Prop({ required: true })
+  name: string;
 
-    @Prop()
-    name: string;
+  @Prop({ required: true })
+  identityNumber: string;
 
-    @Prop()
-    avatar: string;
+  @Prop()
+  email: string;
 
-    @Prop()
-    gender: Gender;
+  @Prop()
+  image: string;
 
-    @Prop()
-    dob: Date;
+  @Prop()
+  gender: Gender;
 
-    @Prop()
-    tel: string;
+  @Prop()
+  dob: Date;
+
+  @Prop()
+  qrCode: string;
 }
 
-export const UserSchema = SchemaFactory.createForClass(Host);
+export const UserSchema = SchemaFactory.createForClass(User);
+UserSchema.index({ tel: 1, role: 1 }, { unique: true });
