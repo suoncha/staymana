@@ -15,7 +15,8 @@ export class CreateUserDto {
   @IsDefined()
   gender: Gender;
 
-  dob?: Date;
+  @IsDefined()
+  dob: Date;
 
   @IsDefined()
   identityNumber: string;

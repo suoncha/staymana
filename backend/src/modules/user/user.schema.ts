@@ -31,7 +31,7 @@ export class User {
   @Prop()
   gender: Gender;
 
-  @Prop()
+  @Prop({ required: true })
   dob: Date;
 
   @Prop()
