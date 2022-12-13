@@ -48,11 +48,12 @@ const styles = StyleSheet.create({
   container: {
     position: "relative",
     paddingHorizontal: (24 / 375) * ScreenSize.width,
+    paddingTop: (12 / 812) * ScreenSize.height,
     backgroundColor: Color.white_100,
     height: "100%",
   },
   form: {
-    marginTop: (24 / 812) * ScreenSize.height,
+    marginTop: (12 / 812) * ScreenSize.height,
   },
   action: {
     flexDirection: "row",

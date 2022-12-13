@@ -51,9 +51,9 @@ export function ViewBill({ route, navigation }) {
             />
           </View>
         </View>
-        <View style={styles.list}>
+        <View style={{marginTop: customSize(24)}}>
           <Text style={{ ...TextStyle.h3 }}>Danh sách hóa đơn</Text>
-          <View style={{ flexDirection: "row", marginTop: customSize(24) }}>
+          <View style={{ flexDirection: "row", marginTop: customSize(12) }}>
             <Pressable onPress={() => setSelected(0)}>
               <View
                 style={{
@@ -115,11 +115,12 @@ const styles = StyleSheet.create({
   container: {
     position: "relative",
     paddingHorizontal: (24 / 375) * ScreenSize.width,
+    paddingTop: customSize(12),
     backgroundColor: Color.white_100,
     height: "100%",
   },
   func: {
-    marginVertical: (24 / 812) * ScreenSize.height,
+    marginVertical: customSize(12),
   },
   buttonGroup: {
     justifyContent: "center",
