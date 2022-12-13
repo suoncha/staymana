@@ -33,3 +33,5 @@ export { SignUp2 } from "./shared/SignUp2";
 export { SignUp3 } from "./shared/SignUp3";
 export { SignUp4 } from "./shared/SignUp4";
 export { SignUp5 } from "./shared/SignUp5";
+// Log in
+export { LoginFail } from "./shared/LoginFail";

@@ -1,22 +1,32 @@
 import React from "react";
-import { View, Button, Text, StyleSheet } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
+import { Color, ScreenSize } from '../../utils'
+import { StepBar, ButtonFullWidth, InputOtp } from '../../components';
 
 export function SignUp3({ navigation }) {
   return (
-    <View style={styles.center}>
-      <Button
-        title="Tiếp theo"
-        onPress={() => navigation.navigate("SignUp4")}
-      />
+    <View style={styles.container}>
+      <StepBar step={2}></StepBar>
+      <View style={{...styles.container, paddingTop: ScreenSize.height * 0.03}}>
+        <Image 
+          source={require("../../images/otp.png")}
+          style={{width: ScreenSize.width * 0.34, height: ScreenSize.width * 0.29}}
+        ></Image>
+        <View style={{padding: ScreenSize.height * 0.04}}></View>
+        <InputOtp></InputOtp>
+      </View>
+      
+      <View style={{paddingBottom: ScreenSize.height * 0.1}}>
+        <ButtonFullWidth content='Tiếp theo' onPress={() => navigation.navigate("SignUp4")}></ButtonFullWidth>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  center: {
+  container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
+    backgroundColor: Color.white_100,
+    alignItems: 'center',
   },
 });

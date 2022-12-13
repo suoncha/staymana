@@ -5,7 +5,9 @@ import { ButtonType, Color, ScreenSize, TextStyle } from "../../utils";
 export const ButtonFullWidth = (props) => {
   const { type, content, onPress } = props;
   const buttonColor =
-    type == ButtonType.OUTLINE ? Color.white_100 : Color.primary_100;
+    type == ButtonType.OUTLINE ? Color.white_100 : 
+    type == ButtonType.GREEN ? Color.green_100 : 
+    type == ButtonType.RED ? Color.red_100 : Color.primary_100;
   const textColor =
     type == ButtonType.OUTLINE ? Color.primary_100 : Color.white_100;
   return (

@@ -1,22 +1,30 @@
 import React from "react";
-import { View, Button, Text, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
+import { Color, ScreenSize, TextStyle } from '../../utils'
+import { StepBar, ButtonFullWidth, InputPassword } from '../../components';
 
 export function SignUp4({ navigation }) {
   return (
-    <View style={styles.center}>
-      <Button
-        title="Hoàn thành"
-        onPress={() => navigation.navigate("SignUp5")}
-      />
+    <View style={styles.container}>
+      <StepBar step={3}></StepBar>
+      <View style={{...styles.container, paddingTop: ScreenSize.height * 0.03, alignItems: 'flex-start'}}>
+        <Text style={TextStyle.h2}>Tạo mật khẩu mới</Text>
+        <View style={{padding: ScreenSize.height * 0.01}}></View>
+        <InputPassword title='Nhập mật khẩu'></InputPassword>
+        <InputPassword title='Nhập lại mật khẩu'></InputPassword>
+      </View>
+      
+      <View style={{paddingBottom: ScreenSize.height * 0.1}}>
+        <ButtonFullWidth content='Hoàn thành' onPress={() => navigation.navigate("SignUp5")}></ButtonFullWidth>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  center: {
+  container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
+    backgroundColor: Color.white_100,
+    alignItems: 'center',
   },
 });

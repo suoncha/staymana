@@ -88,7 +88,8 @@ export function HostNotification({navigation}) {
               .map(nof => (
               <NotificationCard userImg={nof.userImg} content={nof.content} time={nof.time} isRead={nof.isRead}/>
             ))}
-            <Divider style={{ color: Color.grey_100 }} />
+            <View style={{padding: ScreenSize.height * 0.01}}></View>
+            <Divider color={Color.grey_20} height={1} />
             <View style={{ marginVertical: (16 / 812) * ScreenSize.height, }}>
               <Text style={TextStyle.h3}>Trước đó</Text>
             </View>
