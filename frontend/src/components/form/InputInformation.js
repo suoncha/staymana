@@ -8,7 +8,7 @@ export const InputInformation = (props) => {
   return (
     <TextInput
       label={
-        <Text style={{ ...TextStyle.h3, color: Color.dark_100 }}>{title}</Text>
+        <Text style={{ ...TextStyle.bodyLarge, color: Color.dark_100 }}>{title}</Text>
       }
       mode="flat"
       value={information}

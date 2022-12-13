@@ -21,7 +21,10 @@ export const InputText = (props) => {
       outlineColor={Color.white_100}
       activeOutlineColor={Color.white_100}
       onChangeText={(text) => setText(text)}
-      onFocus={() => setFilledFlag(false)}
+      onFocus={() => {
+        setFilledFlag(false);
+        props.unit && setText("");
+      }}
       onEndEditing={() => {
         if (text == "") {
           setFilledFlag(false);
