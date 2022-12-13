@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, Pressable } from "react-native";
-import { ScreenSize } from "../../utils";
+import { ScreenSize, Color } from "../../utils";
 import { HouseCard } from "../../components";
 
 const houseList = [
@@ -38,11 +38,11 @@ export function HostList({ navigation }) {
         <Text style={styles.headerText}>Nhà trọ của bạn</Text>
       </View>
       <SafeAreaView>
-        <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} style={{ paddingTop: 12, backgroundColor: Color.white_100}}>
           {houseList.map(house => (
-          <Pressable onPress={() => navigation.navigate("ViewHouse", { name: house.name })}>
-           <HouseCard avatar={house.avatar} name={house.name} address={house.address}/>
-          </Pressable>
+            <Pressable onPress={() => navigation.navigate("ViewHouse", { name: house.name })}>
+              <HouseCard avatar={house.avatar} name={house.name} address={house.address}/>
+            </Pressable>
           ))}
           <View style={{height: ScreenSize.height * 0.32}}></View>
         </ScrollView>

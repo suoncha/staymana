@@ -59,10 +59,11 @@ export const GuestStack = () => {
       <Stack.Screen
         name="Feed"
         component={GuestNavBar}
-        options={({ route }) => ({
-          headerTitle: getHeaderTitle(route),
-          headerShown: renderTitle(route),
-        })}
+        options={{ headerShown: false }}
+        // options={({ route }) => ({
+        //   headerTitle: getHeaderTitle(route),
+        //   headerShown: renderTitle(route),
+        // })}
       />
       <Stack.Screen
         name="GuestNotification"

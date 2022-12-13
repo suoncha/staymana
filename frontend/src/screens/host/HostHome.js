@@ -7,6 +7,8 @@ import { Avatar } from "react-native-paper";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 export function HostHome({ navigation }) {
+  const name = "Nguyễn Tuấn Minh";
+  const avatar = "https://staymana.s3.ap-southeast-1.amazonaws.com/sample-avatar.jpg";
   return (
     <SafeAreaView style={{ backgroundColor: Color.white_100, height: "100%"}}>
       <View style={{ marginHorizontal: customSize(24) }}>
@@ -36,12 +38,12 @@ export function HostHome({ navigation }) {
             >
               <Avatar.Image
                 size={customSize(40)}
-                source={{uri: "https://staymana.s3.ap-southeast-1.amazonaws.com/sample-avatar.jpg"}}
+                source={{uri: avatar}}
               />
             </Pressable>
           </View>
         </View>
-        <WelcomeText name="Nguyễn Tuấn Minh" />
+        <WelcomeText name={name} />
         <FlatList
           data={CardServiceData}
           renderItem={({ item }) => (
