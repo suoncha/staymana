@@ -15,7 +15,7 @@ export class HouseService {
       name: createHouseDto.name,
       address: createHouseDto.address,
       image: createHouseDto.image,
-      host_id: createHouseDto.host_id,
+      hostId: createHouseDto.hostId,
     })
   }
 

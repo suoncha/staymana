@@ -8,8 +8,8 @@ export const RoomSchema = new Schema(
     image: {type: String, default: ''},
     house_id: String,
     host_id: String,
-    member_id: {type: [String], default: []},
-    bill_id: {type: [String], default: []},
+    memberId: {type: [String], default: []},
+    billId: {type: [String], default: []},
   }
 );
 
@@ -18,8 +18,8 @@ export interface Room extends Document {
   area: number,
   rentalFee: number,
   image: string,
-  house_id: string,
-  host_id: string,
-  member_id: string[],
-  bill_id: string[],
+  houseId: string,
+  hostId: string,
+  memberId: string[],
+  billId: string[],
 }

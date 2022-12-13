@@ -13,16 +13,16 @@ export class CreateRoomDto {
   image?: string;
 
   @IsDefined()
-  house_id: string;
+  houseId: string;
 
   @IsDefined()
-  host_id: string;
+  hostId: string;
 }
 
 export class GetRoomsDto {
   @IsDefined()
-  host_id: string;
+  hostId: string;
 
   @IsDefined()
-  house_id: string;
+  houseId: string;
 }

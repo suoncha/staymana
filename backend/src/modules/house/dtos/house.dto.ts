@@ -10,7 +10,7 @@ export class CreateHouseDto {
   image?: string;
 
   @IsDefined()
-  host_id: string;
+  hostId: string;
 
   roomInfoList?: Array<RoomInfo>;
 }
@@ -24,8 +24,8 @@ class RoomInfo {
 
 export class GetHousesDto {
   @IsDefined()
-  host_id: string;
+  hostId: string;
 
   @IsDefined()
-  house_id: string;
+  houseId: string;
 }

@@ -20,8 +20,8 @@ export class HouseController {
       createRoomDto.area = roomInfo.area;
       createRoomDto.rentalFee = roomInfo.rentalFee;
       createRoomDto.image = roomInfo.image;
-      createRoomDto.house_id = newHouse.id;
-      createRoomDto.host_id = createHouseDto.host_id;
+      createRoomDto.houseId = newHouse.id;
+      createRoomDto.hostId = createHouseDto.hostId;
 
       this.roomService.createRoom(createRoomDto);
       })
