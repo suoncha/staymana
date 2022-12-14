@@ -4,6 +4,8 @@ import OTPTextView from "react-native-otp-textinput";
 import { Color, TextStyle, ScreenSize } from "../../utils";
 
 export const InputOtp = (props) => {
+  const { onPress } = props
+
   return (
     <SafeAreaView>
       <View style={{ flexDirection: "column", marginBottom: 26 }}>
@@ -32,7 +34,7 @@ export const InputOtp = (props) => {
       />
       <View style={{ marginTop: ScreenSize.height * 0.02, flexDirection: 'row' }}>
         <Text style={{...TextStyle.h4, color: Color.grey_100 }}> Bạn chưa nhận được mã OTP? </Text>
-        <Pressable>
+        <Pressable onPress={onPress}>
           <Text style={{...TextStyle.h4, color: Color.primary_100}}>Gửi lại mã</Text>
         </Pressable>
       </View>

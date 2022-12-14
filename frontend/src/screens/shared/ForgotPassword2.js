@@ -40,7 +40,6 @@ export function ForgotPassword2({ navigation, route }) {
   useEffect(() => {
     sendVerifyCode()
   }, [])
-  
 
   return (
     <View style={styles.container}>
@@ -54,7 +53,7 @@ export function ForgotPassword2({ navigation, route }) {
         ></Image>
         <View style={{padding: ScreenSize.height * 0.04}}></View>
 
-        <InputOtp OTPInput={setOTP} ></InputOtp>
+        <InputOtp OTPInput={setOTP} onPress={sendVerifyCode}></InputOtp>
         {OTP.length == 6 ? confirmCode() : null}
         
       </View>
