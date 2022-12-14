@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Platform, StyleSheet, Text, View,} from "react-native";
-import {ButtonHalfWidth, InputText} from "../../components";
+import {ButtonHalfWidth, InputDate, InputText} from "../../components";
 import {BillType, ButtonType, Color, customSize, ScreenSize, TextStyle,} from "../../utils";
 import {Dropdown} from "react-native-element-dropdown";
 import {AntDesign} from "@expo/vector-icons";
@@ -147,13 +147,14 @@ export function CreateBill({navigation}) {
                             />
                         )}
                     />
-                    <InputText title="Tiêu đề" placeholder="Tiêu đề hóa đơn"/>
-                    <InputText
-                        title="Ngày hết hạn hóa đơn"
-                        placeholder="Ngày hết hạn hóa đơn"
-                        rightIcon="calendar-range"
-                        onPress={() => alert("Hello")}
-                    />
+                    {!isGeneralBill && <InputText title="Tiêu đề" placeholder="Tiêu đề hóa đơn"/>}
+                    {/*<InputText*/}
+                    {/*    title="Ngày hết hạn hóa đơn"*/}
+                    {/*    placeholder="Ngày hết hạn hóa đơn"*/}
+                    {/*    rightIcon="calendar-range"*/}
+                    {/*    onPress={() => alert("Hello")}*/}
+                    {/*/>*/}
+                    <InputDate title='Ngày hết hạn hóa đơn'/>
                     {isGeneralBill && (
                         <View>
                             <InputText
@@ -195,12 +196,12 @@ export function CreateBill({navigation}) {
                             />
                         </View>
                     )}
-                    <InputText
+                    {!isGeneralBill && <InputText
                         title="Số tiền"
                         placeholder="Số tiền phải trả"
                         rightIcon="currency-usd"
                         onPress={() => alert("Hello")}
-                    />
+                    />}
                 </View>
             </KeyboardAwareScrollView>
             <View
