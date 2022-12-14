@@ -15,7 +15,8 @@ const guestList = [
 ];
 
 export function ViewRoom({ route, navigation }) {
-  const { name } = route.params;
+  const name = route.params.name;
+  const houseName = route.params.houseName;
   const area = "20";
   const price = "3000000";
   const [roomInfoStatus, setRoomInfoStatus] = React.useState(true);
@@ -65,7 +66,7 @@ export function ViewRoom({ route, navigation }) {
             )}
             <ButtonAddGuess
               title="Thêm người"
-              onPress={() => navigation.navigate("AddGuest", { fromRoom: true, roomName: name})}
+              onPress={() => navigation.navigate("AddGuest", { fromRoom: true, roomName: name, houseName: houseName})}
             />
           </View>
         }
