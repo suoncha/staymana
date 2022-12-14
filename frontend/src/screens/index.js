@@ -8,7 +8,6 @@ export { HostList } from "./host/HostList";
 export { HostProfile } from "./host/HostProfile";
 export { HostChat } from "./host/HostChat";
 export { GuestDetail } from "./host/GuestDetail";
-export { HostInfo } from "./host/HostInfo";
 export { ViewHouse } from "./host/ViewHouse";
 export { ViewRoom } from "./host/ViewRoom";
 export { ViewGuest } from "./host/ViewGuest";
@@ -16,7 +15,6 @@ export { ViewBill } from "./host/ViewBill";
 export { HostNotification } from "./host/HostNotification";
 // Guest
 export { GuestProfile } from "./guest/GuestProfile";
-export { GuestInfo } from "./guest/GuestInfo";
 export { GuestChat } from "./guest/GuestChat";
 export { GuestHistory } from "./guest/GuestHistory";
 export { GuestList } from "./guest/GuestList";

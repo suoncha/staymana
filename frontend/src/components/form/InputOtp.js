@@ -1,12 +1,9 @@
 import * as React from "react";
-import { Keyboard } from "react-native";
 import { SafeAreaView, Text, View, Pressable } from "react-native";
 import OTPTextView from "react-native-otp-textinput";
 import { Color, TextStyle, ScreenSize } from "../../utils";
 
-export const InputOtp = () => {
-  const [OTP, setOTP] = React.useState("")
-
+export const InputOtp = (props) => {
   return (
     <SafeAreaView>
       <View style={{ flexDirection: "column", marginBottom: 26 }}>
@@ -19,13 +16,13 @@ export const InputOtp = () => {
       </View>
       
       <OTPTextView
-        inputCount={5}
-        handleTextChange={(OTP) => setOTP(OTP)}
+        inputCount={6}
+        handleTextChange={(OTP) => props.OTPInput(OTP)}
         tintColor={Color.primary_40}
         offTintColor={Color.lightgrey_60}
         textInputStyle={{
-          height: ScreenSize.height * 0.086,
-          width: ScreenSize.width * 0.15,
+          height: ScreenSize.height * 0.072,
+          width: ScreenSize.width * 0.125,
           backgroundColor: Color.lightgrey_60,
           borderWidth: 1,
           borderRadius: 10,
