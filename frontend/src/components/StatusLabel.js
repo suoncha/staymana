@@ -1,16 +1,16 @@
-import { Text, View, StyleSheet } from "react-native";
-import { Color, ScreenSize, TextStyle } from "../utils";
+import { StyleSheet, Text, View } from "react-native";
+import { Color, TextStyle } from "../utils";
 
 export const StatusLabel = (props) => {
   const { status } = props;
   const STATUS_DATA = [
     {
-      color: Color.green_100,
-      text: "Đã thanh toán",
-    },
-    {
       color: Color.red_100,
       text: "Chưa thanh toán",
+    },
+    {
+      color: Color.green_100,
+      text: "Đã thanh toán",
     },
   ];
   return (

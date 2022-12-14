@@ -1,6 +1,3 @@
 export function currencyFormat(number) {
-  return new Intl.NumberFormat("vi-VN", {
-    style: "currency",
-    currency: "VND",
-  }).format(number);
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " đ" + "";
 }
