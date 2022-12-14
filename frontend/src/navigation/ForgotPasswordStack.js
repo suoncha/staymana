@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { ScreenSize } from "../utils";
 
 import {
+  ForgotChoose,
   ForgotPassword1,
   ForgotPassword2,
   ForgotPassword3,
@@ -42,8 +43,9 @@ export const ForgotPasswordStack = () => {
   return (
     <Stack.Navigator
       screenOptions={HeaderStyle}
-      initialRouteName="ForgotPassword1"
+      initialRouteName="ForgotChoose"
     >
+      <Stack.Screen name="ForgotChoose" component={ForgotChoose} />
       <Stack.Screen name="ForgotPassword1" component={ForgotPassword1} />
       <Stack.Screen name="ForgotPassword2" component={ForgotPassword2} />
       <Stack.Screen name="ForgotPassword3" component={ForgotPassword3} />

@@ -1,14 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
-import { View, StyleSheet, Image, ScrollView, Text } from "react-native";
+import { View, StyleSheet, Image, ScrollView, Alert } from "react-native";
 import { Color, ScreenSize } from '../../utils'
 import { StepBar, ButtonFullWidth, InputOtp } from '../../components';
 
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
 import { firebaseConfig } from "../../config";
 import firebase from "firebase/compat";
-import { Alert } from "react-native";
 
-export function ForgotPassword2({ navigation, route }) {
+export function ForgotPassword2({ navigation, route }) {  
   const [showButton, setShowButton] = useState(false)
 
   const { phoneNumber } = route.params
@@ -40,7 +39,6 @@ export function ForgotPassword2({ navigation, route }) {
   useEffect(() => {
     sendVerifyCode()
   }, [])
-  
 
   return (
     <View style={styles.container}>
@@ -54,7 +52,7 @@ export function ForgotPassword2({ navigation, route }) {
         ></Image>
         <View style={{padding: ScreenSize.height * 0.04}}></View>
 
-        <InputOtp OTPInput={setOTP} ></InputOtp>
+        <InputOtp OTPInput={setOTP} onPress={sendVerifyCode}></InputOtp>
         {OTP.length == 6 ? confirmCode() : null}
         
       </View>
