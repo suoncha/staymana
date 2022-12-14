@@ -60,7 +60,7 @@ export function ViewHouse({ route, navigation }) {
               <SmallCard 
                 avatar={room.avatar} 
                 name={room.name}
-                onPress={() => navigation.navigate("ViewRoom", { name: room.name })}
+                onPress={() => navigation.navigate("ViewRoom", { name: room.name, houseName: name })}
               />
             )}
             <ButtonAddGuess

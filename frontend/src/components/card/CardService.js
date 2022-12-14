@@ -7,7 +7,7 @@ export const CardService = (props) => {
   const navigation = useNavigation();
 
   return (
-    <Pressable onPress={() => navigation.navigate(props.data.navigate)}>
+    <Pressable onPress={() => navigation.navigate(props.data.navigate, props.data.route)}>
       <View style={styles.container}>
         <Avatar.Image
           size={(80 / 375) * ScreenSize.width}

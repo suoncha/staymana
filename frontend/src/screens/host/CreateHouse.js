@@ -99,7 +99,4 @@ const styles = StyleSheet.create({
   input: {
     marginBottom: 24,
   },
-  // addImage: {
-  //   margin: 50,
-  // }
 });
