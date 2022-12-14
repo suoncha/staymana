@@ -5,7 +5,7 @@ import {
   ScreenSize,
   TextStyle,
 } from "../../utils";
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { StatusLabel } from "../StatusLabel";
 
 export const CardBill = (props) => {
@@ -16,9 +16,9 @@ export const CardBill = (props) => {
       <View style={styles.container}>
         <View style={styles.line}>
           <Text style={{ ...TextStyle.h4 }}>
-            Phòng {bill.room} - {bill.time}
+            {bill.room} - {bill.time}
           </Text>
-          <StatusLabel status={bill.status} />
+          <StatusLabel status={bill.paid} />
         </View>
         <View style={{ height: customSize(14) }} />
         <View style={styles.line}>

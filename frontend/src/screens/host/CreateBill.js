@@ -1,67 +1,74 @@
 import React from "react";
-import { View, Button, Text, StyleSheet, ScrollView } from "react-native";
-import { ButtonHalfWidth, InputPassword, InputText } from "../../components";
-import { ButtonType, Color, ScreenSize, TextStyle } from "../../utils";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ButtonHalfWidth, InputText } from "../../components";
+import {
+  ButtonType,
+  Color,
+  customSize,
+  ScreenSize,
+  TextStyle,
+} from "../../utils";
 
 export function CreateBill({ navigation }) {
   return (
-    <View style={styles.container}>
-      <ScrollView style={{flex: 1}}>
-      <Text style={{ ...TextStyle.h3 }}>Nhập thông tin hóa đơn</Text>
-      <View style={styles.form}>
-        <InputText
-          title="Phòng"
-          placeholder="Danh sách phòng"
-          rightIcon="format-list-bulleted"
-          onPress={() => alert("Hello")}
-        />
-        <InputText title="Tiêu đề" placeholder="Tiêu đề hóa đơn" />
-        <InputText
-          title="Ngày"
-          placeholder="Ngày hết hạn hóa đơn"
-          rightIcon="calendar-range"
-          onPress={() => alert("Hello")}
-        />
-        <InputText
-          title="Số tiền"
-          placeholder="Số tiền phải trả"
-          rightIcon="currency-usd"
-          onPress={() => alert("Hello")}
-        />
-      </View>
-      <View style={{ paddingBottom: ScreenSize.height * 0.1}}>
-        <View style={styles.action}>
-          <ButtonHalfWidth
-            type={ButtonType.DEFAULT}
-            content="Tạo"
-            onPress={() => navigation.goBack()}
+    <ScrollView contentContainerStyle={{ flex: 1 }}>
+      <View style={styles.container}>
+        <View style={{ marginTop: customSize(12) }}>
+          <Text style={{ ...TextStyle.h3, marginBottom: customSize(12) }}>
+            Nhập thông tin hóa đơn
+          </Text>
+          <InputText
+            title="Phòng"
+            placeholder="Danh sách phòng"
+            rightIcon="format-list-bulleted"
+            onPress={() => alert("Hello")}
           />
-          <ButtonHalfWidth
-            type={ButtonType.RED}
-            content="Hủy"
-            onPress={() => navigation.goBack()}
+          <InputText title="Tiêu đề" placeholder="Tiêu đề hóa đơn" />
+          <InputText
+            title="Ngày"
+            placeholder="Ngày hết hạn hóa đơn"
+            rightIcon="calendar-range"
+            onPress={() => alert("Hello")}
+          />
+          <InputText
+            title="Số tiền"
+            placeholder="Số tiền phải trả"
+            rightIcon="currency-usd"
+            onPress={() => alert("Hello")}
           />
         </View>
+        <View style={{ marginBottom: customSize(48), alignSelf: "center" }}>
+          <View style={styles.action}>
+            <ButtonHalfWidth
+              type={ButtonType.DEFAULT}
+              content="Tạo"
+              onPress={() => navigation.goBack()}
+            />
+            <ButtonHalfWidth
+              type={ButtonType.RED}
+              content="Hủy"
+              onPress={() => navigation.goBack()}
+            />
+          </View>
+        </View>
       </View>
-      </ScrollView>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    position: "relative",
+    flex: 1,
+    flexDirection: "column",
     paddingHorizontal: (24 / 375) * ScreenSize.width,
-    paddingTop: (12 / 812) * ScreenSize.height,
     backgroundColor: Color.white_100,
     height: "100%",
-  },
-  form: {
-    marginTop: (12 / 812) * ScreenSize.height,
+    justifyContent: "space-between",
   },
   action: {
     flexDirection: "row",
+    width: ScreenSize.width,
+    paddingHorizontal: (24 / 375) * ScreenSize.width,
     justifyContent: "space-between",
-    top: (280 / 812) * ScreenSize.height,
   },
 });
