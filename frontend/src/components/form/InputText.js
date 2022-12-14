@@ -4,9 +4,14 @@ import { TextInput } from "react-native-paper";
 import { Color, TextStyle, ScreenSize } from "../../utils";
 
 export const InputText = (props) => {
-  const { title, placeholder, rightIcon, onPress, defaultValue } = props;
+  const { title, placeholder, rightIcon, onPress, defaultValue, allowOutput } = props;
   const [text, setText] = React.useState();
   const [filledFlag, setFilledFlag] = React.useState(false);
+  const handleInput = (text) => {
+    setText(text)
+    if (allowOutput) props.output(text)
+  }
+
   return (
     <TextInput
       label={
@@ -20,7 +25,7 @@ export const InputText = (props) => {
       activeUnderlineColor={Color.grey_100}
       outlineColor={Color.white_100}
       activeOutlineColor={Color.white_100}
-      onChangeText={(text) => setText(text)}
+      onChangeText={(text) => handleInput(text)}
       onFocus={() => {
         setFilledFlag(false);
         props.unit && setText("");
