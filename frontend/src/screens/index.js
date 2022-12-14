@@ -22,6 +22,7 @@ export { GuestViewBill } from "./guest/GuestViewBill";
 export { GuestViewRoom } from "./guest/GuestViewRoom";
 export { GuestNotification } from "./guest/GuestNotification";
 // Forgot Password
+export { ForgotChoose } from "./shared/ForgotChoose";
 export { ForgotPassword1 } from "./shared/ForgotPassword1";
 export { ForgotPassword2 } from "./shared/ForgotPassword2";
 export { ForgotPassword3 } from "./shared/ForgotPassword3";
