@@ -1,22 +1,22 @@
 import { API_URL } from "../utils";
 import axios from 'axios'
 
-const data = {
-    role: 0,
-    tel: '12345678',
-}
-
-export function validateUser() {
-    const PATH = API_URL + '/users/validate'
-    axios({
+export const checkExist = async (data) => {
+    const PATH = API_URL + '/users/check-exist'
+    const res = await axios({
         method: 'post',
         url: PATH,
         data: data,
     })
-    .then(function (response) {
-        console.log(response);
+    return res.data
+}
+
+export const changePassword = async (data) => {
+    const PATH = API_URL + '/users/change-password'
+    const res = await axios({
+        method: 'post',
+        url: PATH,
+        data: data,
     })
-    .catch(function (error) {
-        console.log(error);
-    });
+    return res.status
 }

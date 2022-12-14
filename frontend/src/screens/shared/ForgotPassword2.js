@@ -1,14 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
-import { View, StyleSheet, Image, ScrollView, Text } from "react-native";
+import { View, StyleSheet, Image, ScrollView, Alert } from "react-native";
 import { Color, ScreenSize } from '../../utils'
 import { StepBar, ButtonFullWidth, InputOtp } from '../../components';
 
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
 import { firebaseConfig } from "../../config";
 import firebase from "firebase/compat";
-import { Alert } from "react-native";
 
-export function ForgotPassword2({ navigation, route }) {
+export function ForgotPassword2({ navigation, route }) {  
   const [showButton, setShowButton] = useState(false)
 
   const { phoneNumber } = route.params

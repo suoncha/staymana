@@ -5,7 +5,7 @@ import { TextInput } from "react-native-paper";
 import { Color, TextStyle, ScreenSize } from "../../utils";
 
 export const InputPassword = (props) => {
-  const { title, information } = props;
+  const { title, allowOutput } = props;
   const [password, setPassword] = useState("");
   const [passwordVisibility, setPasswordVisibility] = useState(true);
   const [rightIcon, setRightIcon] = useState("eye");
@@ -18,6 +18,11 @@ export const InputPassword = (props) => {
       setPasswordVisibility(!passwordVisibility);
     }
   };
+  const handleInput = (text) => {
+    setPassword(text)
+    if (allowOutput) props.output(text)
+  }
+
   return (
     <KeyboardAvoidingView enabled>
       <TextInput
@@ -33,7 +38,7 @@ export const InputPassword = (props) => {
         activeUnderlineColor={Color.grey_100}
         outlineColor={Color.primary_100}
         activeOutlineColor={Color.primary_100}
-        onChangeText={(password) => setPassword(password)}
+        onChangeText={(password) => handleInput(password)}
         style={{
           ...TextStyle.h3,
           fontWeight: "400",
