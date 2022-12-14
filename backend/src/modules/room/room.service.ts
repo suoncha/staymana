@@ -15,4 +15,9 @@ export class RoomService {
   async getRooms(getRoomsDto: GetRoomsDto ) {
     return await this.roomModel.find(getRoomsDto);
   }
+
+  async getRentalFee(roomId: string) {
+    const room = await this.roomModel.findById(roomId);
+    return room.rentalFee;
+  }
 }
