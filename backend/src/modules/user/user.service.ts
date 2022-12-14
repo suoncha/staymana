@@ -4,6 +4,7 @@ import { User, UserDocument } from './user.schema';
 import { Model } from 'mongoose';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { CheckUserDto } from './dtos/check-user.dto';
+import { ChangePasswordDto } from './dtos/change-password.dto';
 
 @Injectable()
 export class UserService {
@@ -32,5 +33,14 @@ export class UserService {
 
   async createUser(createUserDto: CreateUserDto): Promise<User> {
     return this.userModel.create(createUserDto);
+  }
+
+  async changePassword(changePasswordDto: ChangePasswordDto): Promise<User> {
+    return this.userModel.findOneAndUpdate({
+      role: changePasswordDto.role,
+      tel: changePasswordDto.tel
+    },
+      { password: changePasswordDto.password}
+    );
   }
 }

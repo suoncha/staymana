@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateRoomDto, GetRoomsDto } from './dtos/room.dto';
-import { Room } from './models/room.model';
+import { Room } from './room.model';
 
 @Injectable()
 export class RoomService {
@@ -14,5 +14,10 @@ export class RoomService {
 
   async getRooms(getRoomsDto: GetRoomsDto ) {
     return await this.roomModel.find(getRoomsDto);
+  }
+
+  async getRentalFee(roomId: string) {
+    const room = await this.roomModel.findById(roomId);
+    return room.rentalFee;
   }
 }

@@ -14,6 +14,7 @@ import { Response } from 'express';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { CheckUserDto } from './dtos/check-user.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt.guard';
+import { ChangePasswordDto } from './dtos/change-password.dto';
 
 @Controller('/users')
 export class UserController {
@@ -32,16 +33,26 @@ export class UserController {
     return res.status(HttpStatus.OK).send(user);
   }
 
-  @Post('/validate')
+  @Post('/check-exist')
   @HttpCode(HttpStatus.OK)
-  async validateUser(@Body() checkUserDto: CheckUserDto) {
+  async checkExist(@Body() checkUserDto: CheckUserDto) {
     const user = await this.userService.getUserByRoleAndTel(checkUserDto);
-    return !user;
+    return (user != null);
   }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async createUser(@Body() createUserDto: CreateUserDto) {
     return await this.userService.createUser(createUserDto);
+  }
+
+  @Post('/change-password')
+  @HttpCode(HttpStatus.CREATED)
+  async changePassword(
+    @Body() changePasswordDto: ChangePasswordDto,
+    @Res() res: Response,
+  ) {
+    const user = await this.userService.changePassword(changePasswordDto);
+    return res.status(HttpStatus.OK).send(user);
   }
 }

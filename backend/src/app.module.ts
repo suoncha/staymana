@@ -4,6 +4,7 @@ import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { HouseModule } from './modules/house/house.module';
 import { RoomModule } from './modules/room/room.module';
+import { BillModule } from './modules/bill/bill.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { RoomModule } from './modules/room/room.module';
     AuthModule,
     HouseModule,
     RoomModule,
+    BillModule,
   ],
   controllers: [],
   providers: [],
