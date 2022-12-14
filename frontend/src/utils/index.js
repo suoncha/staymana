@@ -5,4 +5,5 @@ export { CardServiceData } from "./CardServiceData";
 export { ButtonType } from "./ButtonType";
 export { customSize } from "./CustomSize";
 export { currencyFormat } from "./CurrencyFormat";
+export { BillType } from "./BillType";
 export * from './BackendUrl'
