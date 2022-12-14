@@ -49,6 +49,7 @@ export function HostProfile({ navigation }) {
           </Pressable>
         </View>
         <View style={{height: 12}}></View>
+        <View style={{paddingTop: ScreenSize.height * 0.3}}/>
       </ScrollView>
     </View>
   );

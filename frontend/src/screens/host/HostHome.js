@@ -2,7 +2,7 @@ import React from "react";
 import { View, Image, StyleSheet, SafeAreaView, FlatList, Platform, StatusBar} from "react-native";
 import { ButtonIcon, CardService, WelcomeText } from "../../components";
 import { CardServiceData } from "../../utils/CardServiceData";
-import { ButtonType, Color, ScreenSize, customSize } from "../../utils";
+import { ButtonType, Color, customSize } from "../../utils";
 import { Avatar } from "react-native-paper";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
@@ -33,7 +33,7 @@ export function HostHome({ navigation }) {
               onPress={() => navigation.navigate("HostNotification")}
             />
             <Pressable
-              onPress={() => navigation.navigate("HostInfo")}
+              onPress={() => navigation.navigate("HostProfile")}
               style={{ marginLeft: customSize(12) }}
             >
               <Avatar.Image

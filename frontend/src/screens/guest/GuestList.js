@@ -45,7 +45,7 @@ export function GuestList({ navigation }) {
               onPress={() => navigation.navigate("GuestNotification")}
             />
             <Pressable
-              onPress={() => navigation.navigate("GuestInfo")}
+              onPress={() => navigation.navigate("GuestProfile")}
               style={{ marginLeft: customSize(12) }}
             >
               <Avatar.Image

@@ -3,7 +3,7 @@ import { Image } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ScreenSize } from "../utils";
 
-import { GuestInfo, GuestNotification } from "../screens";
+import { GuestNotification } from "../screens";
 import { GuestNavBar } from "./GuestNavBar";
 
 const Stack = createStackNavigator();
@@ -45,11 +45,6 @@ export const GuestStack = () => {
         name="GuestNotification"
         component={GuestNotification}
         options={{ title: "Thông báo" }}
-      />
-      <Stack.Screen
-        name="GuestInfo"
-        component={GuestInfo}
-        options={{ title: "Thông tin cá nhân" }}
       />
     </Stack.Navigator>
   );

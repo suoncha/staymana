@@ -11,7 +11,6 @@ import {
   GuestDetail,
   HostNotification,
 } from "../screens";
-import { HostInfo } from "../screens";
 import { HostNavBar } from "./HostNavBar";
 
 const Stack = createStackNavigator();
@@ -79,12 +78,6 @@ export const HostStack = () => {
         name="HostNotification"
         component={HostNotification}
         options={{ title: "Thông báo" }}
-      />
-
-      <Stack.Screen
-        name="HostInfo"
-        component={HostInfo}
-        options={{ title: "Thông tin cá nhân" }}
       />
     </Stack.Navigator>
   );
