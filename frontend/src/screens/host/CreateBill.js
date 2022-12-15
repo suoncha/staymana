@@ -71,6 +71,11 @@ export function CreateBill({navigation}) {
     const [showModal, setShowModal] = useState(false)
     const [modalOutput, setModalOutput] = useState()
 
+    if (modalOutput === 'leftValue') {
+        navigation.navigate("ViewBill", { name: getHouses().find((item) => item.id === houseId).name, fromHouse: true })
+        setModalOutput(null);
+        setShowModal(false)
+    }
     return (
         <View style={{...styles.container, backgroundColor: showModal ? 'rgba(0,0,0,0.5)' : Color.white_100}}>
             <Text style={{...TextStyle.h3, marginVertical: customSize(12)}}>
@@ -212,7 +217,6 @@ export function CreateBill({navigation}) {
                     changeModalVisible={setShowModal} setData={setModalOutput}
                     content="Bạn có chắc chắn tạo hóa đơn này?"
                     leftButton="Xác nhận" rightButton="Hủy"
-                    onPressOK={() => navigation.goBack()}
                 />
             </Modal>
         </View>

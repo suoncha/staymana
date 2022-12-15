@@ -4,7 +4,7 @@ import {ButtonHalfWidth} from "../button/ButtonHalfWidth";
 import {ButtonIcon} from "../button/ButtonIcon";
 
 export const ModalConfirmation = (props) => {
-    const {content, leftButton, rightButton, onPressOK} = props;
+    const {content, leftButton, rightButton} = props;
 
     const closeModal = (bool, data) => {
         props.changeModalVisible(bool);
@@ -21,7 +21,7 @@ export const ModalConfirmation = (props) => {
                 <View style={styles.container}>
                     <View style={styles.buttonView}>
                         <ButtonHalfWidth type={ButtonType.OUTLINE} content={leftButton}
-                                         onPress={onPressOK}></ButtonHalfWidth>
+                                         onPress={() => closeModal(false, 'leftValue')}></ButtonHalfWidth>
                         <ButtonHalfWidth type={ButtonType.RED} content={rightButton}
                                          onPress={() => closeModal(false, 'rightValue')}></ButtonHalfWidth>
                     </View>
