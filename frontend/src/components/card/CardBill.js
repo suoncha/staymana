@@ -7,18 +7,20 @@ import {
 } from "../../utils";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { StatusLabel } from "../StatusLabel";
+import {useNavigation} from "@react-navigation/native";
 
 export const CardBill = (props) => {
+  const navigation = useNavigation();
   const { bill, isRoomBill } = props;
 
   return (
-    <Pressable onPress={() => null}>
+    <Pressable onPress={() => isRoomBill ? navigation.navigate("GuestViewBill", {title: "Hóa đơn " + bill.type + " - " + bill.time, data: bill}): null}>
       <View style={styles.container}>
         <View style={styles.line}>
           <Text style={{ ...TextStyle.h4 }}>
             {isRoomBill ? bill.type : bill.room} - {bill.time}
           </Text>
-          <StatusLabel status={bill.paid} />
+          <StatusLabel paid={bill.paid} />
         </View>
         <View style={{ height: customSize(14) }} />
         <View style={styles.line}>

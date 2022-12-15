@@ -207,13 +207,12 @@ export function CreateBill({navigation}) {
             <Modal
                 transparent={true}
                 visible={showModal}
-                animationType='slide' // optional
             >
                 <ModalConfirmation
-                    changeModalVisible={setShowModal} setData={setModalOutput} // Bắt buộc
+                    changeModalVisible={setShowModal} setData={setModalOutput}
                     content="Bạn có chắc chắn tạo hóa đơn này?"
                     leftButton="Xác nhận" rightButton="Hủy"
-                    onPressOK={() => navigation.navigate("ViewBill", { name: getHouses().find((item) => item.id === houseId).name, fromHouse: true })}
+                    onPressOK={() => navigation.goBack()}
                 />
             </Modal>
         </View>
