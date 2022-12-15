@@ -15,6 +15,7 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { CheckUserDto } from './dtos/check-user.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 import { ChangePasswordDto } from './dtos/change-password.dto';
+import {GetUserDto} from "./dtos/get-user.dto";
 
 @Controller('/users')
 export class UserController {
@@ -38,6 +39,14 @@ export class UserController {
   async checkExist(@Body() checkUserDto: CheckUserDto) {
     const user = await this.userService.getUserByRoleAndTel(checkUserDto);
     return (user != null);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/detail/info')
+  @HttpCode(HttpStatus.OK)
+  async getUserByRoleAndTel(@Body() getUserDto: GetUserDto) {
+    const user = await this.userService.getUserByRoleAndTel(getUserDto);
+    return user;
   }
 
   @Post()
