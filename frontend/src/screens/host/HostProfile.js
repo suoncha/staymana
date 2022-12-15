@@ -62,7 +62,7 @@ export function HostProfile({navigation}) {
                     <View style={styles.info}>
                         <InputText title="Email" defaultValue={email} rightIcon='pencil-outline'></InputText>
                     </View>
-                    <Pressable onPress={() => navigation.navigate("HostHome")}>
+                    <Pressable onPress={() => {Cache.rm('ACCESS_TOKEN'); navigation.navigate("Login")}} >
                         <Text style={[styles.logout, TextStyle.h3, {color: Color.red_100}]}>Đăng xuất</Text>
                     </Pressable>
                 </View>
