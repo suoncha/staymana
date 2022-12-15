@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { View, Image, StyleSheet, SafeAreaView, FlatList, Platform, StatusBar} from "react-native";
+import { View, Image, StyleSheet, SafeAreaView, FlatList, StatusBar} from "react-native";
 import { ButtonIcon, CardService, WelcomeText } from "../../components";
 import { CardServiceData } from "../../utils/CardServiceData";
 import { ButtonType, Color, customSize } from "../../utils";
@@ -8,10 +8,10 @@ import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import * as Cache from '../../services/'
 
 export function HostHome({ navigation }) {
-  //const name = "Nguyễn Tuấn Minh";
   const [name, setName] = useState('');
-  Cache.get('USER_INFO').then((res) => setName(JSON.parse(res).name)).catch((error) => console.log(error));
-  const avatar = "https://staymana.s3.ap-southeast-1.amazonaws.com/sample-avatar.jpg";
+  const [avatar, setAvatar] = useState('');
+  Cache.get('USER_INFO').then((res) => setName(JSON.parse(res).name));
+  Cache.get('USER_INFO').then((res) => setAvatar(JSON.parse(res).image))
   return (
     <SafeAreaView style={{ backgroundColor: Color.white_100, height: "100%"}}>
       <View style={{ marginHorizontal: customSize(24) }}>

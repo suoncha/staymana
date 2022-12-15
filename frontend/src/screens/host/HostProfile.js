@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, Text, StyleSheet, Image, ScrollView, Pressable } from "react-native";
 import { ScreenSize, Color, TextStyle } from "../../utils";
 import { InputInformation, InputText } from "../../components"
+import * as Cache from '../../services/'
 
 export function HostProfile({ navigation }) {
+  const [name, setName] = useState('');
   const avatar = "https://scontent.fsgn2-2.fna.fbcdn.net/v/t39.30808-6/246379189_2013455708828432_4440882224966814717_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=RjlVcEilgU0AX-QEXJQ&_nc_ht=scontent.fsgn2-2.fna&oh=00_AfCHoAifC_ctVwysxaxd8i3CqyIlmyiaDWSJp-wnXSgXhg&oe=639D2BCC";
-  const name = "Nguyễn Tuấn Minh"
+  Cache.get('USER_INFO').then((res) => setName(JSON.parse(res).name));
   const gender = "Nam";
   const dob = "07/12/2000";
   const CCCD = "123456789012";
@@ -44,7 +46,7 @@ export function HostProfile({ navigation }) {
           <View style={styles.info}>
             <InputText title="Email" defaultValue={email} rightIcon='pencil-outline'></InputText>
           </View>
-          <Pressable onPress={() => navigation.navigate("HostHome")} >
+          <Pressable onPress={() => {Cache.rm('ACCESS_TOKEN'); navigation.navigate("Login")}} >
             <Text style={[styles.logout, TextStyle.h3, {color: Color.red_100}]}>Đăng xuất</Text>
           </Pressable>
         </View>

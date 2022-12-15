@@ -1,6 +1,6 @@
 import React from "react";
-import { LoginHandler } from "./src/screens/Login";
+import { MainStack } from "./src/navigation/MainStack";
 
 export default function App() {
-  return <LoginHandler />;
+  return <MainStack />;
 }
