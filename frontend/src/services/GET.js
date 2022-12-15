@@ -15,3 +15,17 @@ export const getUserInfo = async (data) => {
     })
     return res
 }
+
+export const getHouseList = async (data) => {
+    const PATH = API_URL + '/house/' + data.hostId;
+    let token;
+    await Cache.get('ACCESS_TOKEN').then(res => token = res.slice(1, -1));
+    const res = await axios({
+        method: 'get',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
+        url: PATH,
+    })
+    return res
+}
