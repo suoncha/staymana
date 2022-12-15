@@ -1,10 +1,15 @@
 import React, {useState} from "react";
 import {Image, Pressable, ScrollView, StyleSheet, Text, View} from "react-native";
 import {Color, ScreenSize, TextStyle} from "../../utils";
-import {InputInformation, InputText} from "../../components"
+import {InputInformation} from "../../components"
 import * as Cache from '../../services/'
 
 export function HostProfile({navigation}) {
+    const handleDob = (date) => {
+      const tempDate = new Date(date)
+      var printDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear()
+      setDob(printDate)
+    }
     const [name, setName] = useState();
     const [avatar, setAvatar] = useState();
     const [gender, setGender] = useState();
@@ -16,7 +21,7 @@ export function HostProfile({navigation}) {
         setName(JSON.parse(res).name);
         setAvatar(JSON.parse(res).image)
         setGender(JSON.parse(res).gender)
-        setDob(JSON.parse(res).dob.slice(0,10))
+        handleDob(JSON.parse(res).dob)
         setCCCD(JSON.parse(res).identityNumber)
         setPhone(JSON.parse(res).tel)
         setEmail(JSON.parse(res).email ? JSON.parse(res).email : '')
@@ -60,7 +65,7 @@ export function HostProfile({navigation}) {
                         <InputInformation title="Số điện thoại" information={phone}></InputInformation>
                     </View>
                     <View style={styles.info}>
-                        <InputText title="Email" defaultValue={email} rightIcon='pencil-outline'></InputText>
+                        <InputInformation title= "Email" information={email}></InputInformation>
                     </View>
                     <Pressable onPress={() => {Cache.rm('ACCESS_TOKEN'); navigation.navigate("Login")}} >
                         <Text style={[styles.logout, TextStyle.h3, {color: Color.red_100}]}>Đăng xuất</Text>

@@ -1,18 +1,33 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { ButtonFullWidth, InputInformation, InputText } from "../../components";
 import { TextStyle, Color, ScreenSize } from "../../utils";
+import * as Cache from '../../services/'
 
 export function GuestDetail({ route, navigation }) {
+  const handleDob = (date) => {
+    const tempDate = new Date(date)
+    var printDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear()
+    setDob(printDate)
+  }
   const fromRoom = route.params.fromRoom;
   const roomName = route.params.roomName;
   const houseName = route.params.houseName;
-  const name = "Nguyễn Tuấn Minh";
-  const gender = "Nam";
-  const dob = "07/12/2000";
-  const CCCD = "123456789012";
-  const phone = "0123456789";
-  const email = "tuanminhdeptrai@gmail.com";
+  const [name, setName] = useState();
+  const [gender, setGender] = useState();
+  const [dob, setDob] = useState();
+  const [CCCD, setCCCD] = useState();
+  const [phone, setPhone] = useState();
+  const [email, setEmail] = useState();
+  Cache.get('QRDetail').then((res) => {
+    setName(JSON.parse(res).name);
+    setGender(JSON.parse(res).gender)
+    handleDob(JSON.parse(res).dob)
+    setCCCD(JSON.parse(res).identityNumber)
+    setPhone(JSON.parse(res).tel)
+    setEmail(JSON.parse(res).email ? JSON.parse(res).email : '')
+  }).catch((error) => console.log(error))
+
   return (
     <View style={styles.center}>
       <View style={styles.title}>
@@ -22,7 +37,7 @@ export function GuestDetail({ route, navigation }) {
           <InputInformation title="Họ và tên" information={name}></InputInformation>
         </View>
         <View style={styles.info}>
-          <InputInformation title="Giới tính" information={gender}></InputInformation>
+          <InputInformation title="Giới tính" information={gender === 0 ? "Nam" : (gender === 1 ? "Nữ" : "Khác")}></InputInformation>
         </View>
         <View style={styles.info}>
           <InputInformation title="Ngày sinh" information={dob}></InputInformation>

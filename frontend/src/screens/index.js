@@ -37,3 +37,5 @@ export { SignUp5 } from "./shared/SignUp5";
 export { LoginFail } from "./shared/LoginFail";
 export { LoginRole } from "./shared/LoginRole";
 export { LoginScreen } from "./shared/Login";
+// QR
+export { MyQR } from "./guest/MyQR";

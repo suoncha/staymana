@@ -41,7 +41,7 @@ export function HostHome({ navigation }) {
             >
               <Avatar.Image
                 size={customSize(40)}
-                source={{uri: avatar}}
+                source={avatar == '' ? require("../../images/logo.png") : {uri: avatar}}
               />
             </Pressable>
           </View>
