@@ -16,8 +16,9 @@ export const InputDate = (props) => {
     setDate(currentDate)
 
     const tempDate = new Date(currentDate)
-    const printDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear()
+    var printDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear()
     setDateText(printDate)
+    props.output(selectedDate)
   }
 
   return (

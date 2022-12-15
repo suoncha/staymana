@@ -23,9 +23,9 @@ export function SignUp1({ navigation }) {
         <View style={{padding: ScreenSize.height * 0.04}}></View>
         <Text style={TextStyle.h3}>Bạn muốn đăng ký với tư cách là</Text>
         <View style={{padding: ScreenSize.height * 0.012}}></View>
-        <ButtonFullWidth content='Chủ trọ' onPress={() => navigation.navigate("SignUp2")}></ButtonFullWidth>
+        <ButtonFullWidth content='Chủ trọ' onPress={() => navigation.navigate("SignUp2", {role: 1})}></ButtonFullWidth>
         <View style={{padding: ScreenSize.height * 0.015}}></View>
-        <ButtonFullWidth content='Khách thuê trọ' onPress={() => navigation.navigate("SignUp2")}></ButtonFullWidth>
+        <ButtonFullWidth content='Khách thuê trọ' onPress={() => navigation.navigate("SignUp2", {role: 0})}></ButtonFullWidth>
       </View>
     </View>
   );
