@@ -13,8 +13,8 @@ export class RoomController {
     return await this.roomService.createRoom(room);
   }
 
-  @Get()
-  async getRooms(@Body() getRoomsDto: GetRoomsDto ) {
-    return await this.roomService.getRooms(getRoomsDto);
+  @Get('/:hostId/:houseId')
+  async getRooms(@Param('hostId') hostId: string, @Param('houseId') houseId: string) {
+    return await this.roomService.getRooms(hostId, houseId);
   }
 }
