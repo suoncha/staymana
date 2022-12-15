@@ -22,12 +22,12 @@ export function HostList({navigation}) {
             <View style={styles.header}>
                 <Text style={styles.headerText}>Nhà trọ của bạn</Text>
             </View>
-            {!houseList ? <ActivityIndicator/> :
+            {!houseList ? <View style={{height: '100%', justifyContent: 'center', alignItems: 'center'}}><ActivityIndicator/></View> :
                 <SafeAreaView>
                     <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}
                                 style={{paddingTop: 12, backgroundColor: Color.white_100}}>
                         {houseList.map(house => (
-                            <Pressable onPress={() => navigation.navigate("ViewHouse", {name: house.name})}>
+                            <Pressable onPress={() => navigation.navigate("ViewHouse", {name: house.name, address: house.address, _id: house._id})}>
                                 <HouseCard avatar={house.image} name={house.name} address={house.address}/>
                             </Pressable>
                         ))}

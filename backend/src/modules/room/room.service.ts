@@ -12,10 +12,9 @@ export class RoomService {
     return await this.roomModel.create(createRoomDto);
   }
 
-  async getRooms(hostId: string, houseId: string) {
-    return await this.roomModel.find({
-      hostId,
-      houseId,
+  async getRooms(houseId: string) {
+    return this.roomModel.find({
+      houseId
     });
   }
 
