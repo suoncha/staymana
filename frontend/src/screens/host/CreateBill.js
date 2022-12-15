@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import {Platform, StyleSheet, Text, View,} from "react-native";
-import {ButtonHalfWidth, InputDate, InputText} from "../../components";
+import {Modal, Platform, StyleSheet, Text, View,} from "react-native";
+import {ButtonHalfWidth, InputDate, InputText, ModalConfirmation} from "../../components";
 import {BillType, ButtonType, Color, customSize, ScreenSize, TextStyle,} from "../../utils";
 import {Dropdown} from "react-native-element-dropdown";
 import {AntDesign} from "@expo/vector-icons";
@@ -66,10 +66,13 @@ export function CreateBill({navigation}) {
     const [billType, setBillType] = useState("");
     const [houseId, setHouseId] = useState();
     const [roomId, setRoomId] = useState();
+    const [due, setDue] = useState();
     const isGeneralBill = billType === BillType.General;
+    const [showModal, setShowModal] = useState(false)
+    const [modalOutput, setModalOutput] = useState()
 
     return (
-        <View style={styles.container}>
+        <View style={{...styles.container, backgroundColor: showModal ? 'rgba(0,0,0,0.5)' : Color.white_100}}>
             <Text style={{...TextStyle.h3, marginVertical: customSize(12)}}>
                 Nhập thông tin hóa đơn
             </Text>
@@ -92,9 +95,6 @@ export function CreateBill({navigation}) {
                         onChange={(item) => {
                             setBillType(item.value);
                         }}
-                        // renderLeftIcon={() => (
-                        //     <AntDesign style={styles.icon} color="black" name="Safety" size={20} />
-                        // )}
                     />
                     <Dropdown
                         style={styles.dropdown}
@@ -110,16 +110,10 @@ export function CreateBill({navigation}) {
                         searchPlaceholder="Tìm nhà trọ ..."
                         value={houseId}
                         onChange={(item) => {
-                            setHouseId(item);
+                            console.log("ItemId" + item.id)
+                            setHouseId(item.id);
+
                         }}
-                        renderLeftIcon={() => (
-                            <AntDesign
-                                style={styles.icon}
-                                color="black"
-                                name="Safety"
-                                size={20}
-                            />
-                        )}
                     />
                     <Dropdown
                         style={styles.dropdown}
@@ -136,25 +130,11 @@ export function CreateBill({navigation}) {
                         searchPlaceholder="Tìm phòng ..."
                         value={roomId}
                         onChange={(item) => {
-                            setRoomId(item);
+                            setRoomId(item.id);
                         }}
-                        renderLeftIcon={() => (
-                            <AntDesign
-                                style={styles.icon}
-                                color="black"
-                                name="Safety"
-                                size={20}
-                            />
-                        )}
                     />
                     {!isGeneralBill && <InputText title="Tiêu đề" placeholder="Tiêu đề hóa đơn"/>}
-                    {/*<InputText*/}
-                    {/*    title="Ngày hết hạn hóa đơn"*/}
-                    {/*    placeholder="Ngày hết hạn hóa đơn"*/}
-                    {/*    rightIcon="calendar-range"*/}
-                    {/*    onPress={() => alert("Hello")}*/}
-                    {/*/>*/}
-                    <InputDate title='Ngày hết hạn hóa đơn'/>
+                    <InputDate output={setDue} title='Ngày hết hạn hóa đơn'/>
                     {isGeneralBill && (
                         <View>
                             <InputText
@@ -207,8 +187,7 @@ export function CreateBill({navigation}) {
             <View
                 behavior={Platform.OS === "ios" ? "padding" : "height"}
                 style={{
-                    marginTop: customSize(12),
-                    marginBottom: customSize(48),
+                    marginVertical: customSize(48),
                     alignSelf: "center",
                 }}
             >
@@ -216,7 +195,7 @@ export function CreateBill({navigation}) {
                     <ButtonHalfWidth
                         type={ButtonType.DEFAULT}
                         content="Tạo"
-                        onPress={() => navigation.goBack()}
+                        onPress={() => setShowModal(true)}
                     />
                     <ButtonHalfWidth
                         type={ButtonType.RED}
@@ -225,6 +204,18 @@ export function CreateBill({navigation}) {
                     />
                 </View>
             </View>
+            <Modal
+                transparent={true}
+                visible={showModal}
+                animationType='slide' // optional
+            >
+                <ModalConfirmation
+                    changeModalVisible={setShowModal} setData={setModalOutput} // Bắt buộc
+                    content="Bạn có chắc chắn tạo hóa đơn này?"
+                    leftButton="Xác nhận" rightButton="Hủy"
+                    onPressOK={() => navigation.navigate("ViewBill", { name: getHouses().find((item) => item.id === houseId).name, fromHouse: true })}
+                />
+            </Modal>
         </View>
     );
 }
@@ -234,7 +225,6 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "column",
         paddingHorizontal: (24 / 375) * ScreenSize.width,
-        backgroundColor: Color.white_100,
         height: "100%",
         justifyContent: "space-between",
     },

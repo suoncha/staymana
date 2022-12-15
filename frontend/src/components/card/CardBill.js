@@ -9,14 +9,14 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { StatusLabel } from "../StatusLabel";
 
 export const CardBill = (props) => {
-  const { bill } = props;
+  const { bill, isRoomBill } = props;
 
   return (
     <Pressable onPress={() => null}>
       <View style={styles.container}>
         <View style={styles.line}>
           <Text style={{ ...TextStyle.h4 }}>
-            {bill.room} - {bill.time}
+            {isRoomBill ? bill.type : bill.room} - {bill.time}
           </Text>
           <StatusLabel status={bill.paid} />
         </View>
