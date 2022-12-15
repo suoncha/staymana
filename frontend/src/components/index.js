@@ -27,3 +27,4 @@ export { StepBar } from "./bar/StepBar";
 export { ButtonDropDown } from "./button/ButtonDropDown";
 export { StatusLabel } from "./StatusLabel";
 export { InputDate } from "./form/InputDate";
+export { BillDetailCard } from "./card/BillDetailCard";
