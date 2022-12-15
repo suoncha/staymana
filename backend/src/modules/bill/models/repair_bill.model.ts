@@ -10,6 +10,9 @@ export const RepairBillSchema = new Schema(
     isPay: Boolean,
 
     total: Number
+  },
+  {
+    timestamps: true,
   }
 );
 

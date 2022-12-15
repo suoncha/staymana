@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateMonthBillDto } from './dtos/month_bill.dto';
-import { CreateRepairBillDto } from './dtos/repair_bill.dto';
+import { CreateMonthBillDto, GetMonthBillDto } from './dtos/month_bill.dto';
+import { CreateRepairBillDto, GetRepairBillDto } from './dtos/repair_bill.dto';
 import { MonthBill } from './models/month_bill.model';
 import { RepairBill } from './models/repair_bill.model';
 
@@ -54,5 +54,13 @@ export class BillService {
     })
 
     return await newRepairBill.save()
+  }
+
+  async getMonthBill(getMonthBillDto: GetMonthBillDto ) {
+    return await this.monthBillModel.find(getMonthBillDto);
+  }
+
+  async getRepairBill(getRepairBillDto: GetRepairBillDto ) {
+    return await this.repairBillModel.find(getRepairBillDto);
   }
 }

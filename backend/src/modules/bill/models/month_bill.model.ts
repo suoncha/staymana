@@ -21,6 +21,9 @@ export const MonthBillSchema = new Schema(
     isPay: Boolean,
 
     total: Number
+  },
+  {
+    timestamps: true,
   }
 );
 
