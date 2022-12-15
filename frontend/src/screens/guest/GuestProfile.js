@@ -1,16 +1,32 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, Text, StyleSheet, Image, ScrollView, Pressable } from "react-native";
 import { ScreenSize, Color, TextStyle } from "../../utils";
 import { ButtonOption, InputInformation, InputText } from "../../components"
+import * as Cache from '../../services/'
 
 export function GuestProfile({ navigation }) {
-  const avatar = "https://scontent.fsgn2-2.fna.fbcdn.net/v/t39.30808-6/246379189_2013455708828432_4440882224966814717_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=RjlVcEilgU0AX-QEXJQ&_nc_ht=scontent.fsgn2-2.fna&oh=00_AfCHoAifC_ctVwysxaxd8i3CqyIlmyiaDWSJp-wnXSgXhg&oe=639D2BCC";
-  const name = "Nguyễn Tuấn Minh"
-  const gender = "Nam";
-  const dob = "07/12/2000";
-  const CCCD = "123456789012";
-  const phone = "0123456789";
-  const email = "tuanminhdeptrai@gmail.com";
+  const handleDob = (date) => {
+    const tempDate = new Date(date)
+    var printDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear()
+    setDob(printDate)
+  }
+  const [name, setName] = useState();
+  const [avatar, setAvatar] = useState();
+  const [gender, setGender] = useState();
+  const [dob, setDob] = useState();
+  const [CCCD, setCCCD] = useState();
+  const [phone, setPhone] = useState();
+  const [email, setEmail] = useState();
+  Cache.get('USER_INFO').then((res) => {
+    setName(JSON.parse(res).name);
+    setAvatar(JSON.parse(res).image)
+    setGender(JSON.parse(res).gender)
+    handleDob(JSON.parse(res).dob)
+    setCCCD(JSON.parse(res).identityNumber)
+    setPhone(JSON.parse(res).tel)
+    setEmail(JSON.parse(res).email ? JSON.parse(res).email : '')
+  }).catch((error) => console.log(error))
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -27,13 +43,13 @@ export function GuestProfile({ navigation }) {
             />
           </View>
           <View style={styles.qr}>
-            <ButtonOption iconName="qrcode-scan" content="Mã QR của tôi" onPress={() => {}}></ButtonOption>
+            <ButtonOption iconName="qrcode-scan" content="Mã QR của tôi" onPress={() => navigation.navigate('MyQR')}></ButtonOption>
           </View>
           <View style={styles.info}>
             <InputInformation title="Họ và tên" information={name}></InputInformation>
           </View>
           <View style={styles.info}>
-            <InputInformation title="Giới tính" information={gender}></InputInformation>
+            <InputInformation title="Giới tính" information={gender === 0 ? "Nam" : (gender === 1 ? "Nữ" : "Khác")}></InputInformation>
           </View>
           <View style={styles.info}>
             <InputInformation title="Ngày sinh" information={dob}></InputInformation>
@@ -42,12 +58,12 @@ export function GuestProfile({ navigation }) {
             <InputInformation title="Mã số CCCD" information={CCCD}></InputInformation>
           </View>
           <View style={styles.info}>
-            <InputText title="Số điện thoại" defaultValue={phone} rightIcon='pencil-outline' keyboardType="numeric"></InputText>
-          </View>
+                        <InputInformation title="Số điện thoại" information={phone}></InputInformation>
+                    </View>
           <View style={styles.info}>
-            <InputText title="Email" defaultValue={email} rightIcon='pencil-outline'></InputText>
+              <InputInformation title= "Email" information={email}></InputInformation>
           </View>
-          <Pressable onPress={() => navigation.navigate("GuestList")} >
+          <Pressable onPress={() => {Cache.rm('ACCESS_TOKEN'); navigation.navigate("Login")}} >
             <Text style={[styles.logout, TextStyle.h3, {color: Color.red_100}]}>Đăng xuất</Text>
           </Pressable>
         </View>

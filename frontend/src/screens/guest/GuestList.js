@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, Image, StyleSheet, SafeAreaView, StatusBar, Text, ScrollView, Pressable } from "react-native";
 import { ButtonIcon, WelcomeText, HouseCard } from "../../components";
 import { ButtonType, Color, customSize, ScreenSize, TextStyle } from "../../utils";
 import { Avatar } from "react-native-paper";
+import * as Cache from '../../services/'
 
 export function GuestList({ navigation }) {
-  const name = "Nguyễn Tuấn Minh";
+  const [name, setName] = useState('');
+  Cache.get('USER_INFO').then((res) => console.log('Name: ' + JSON.parse(res).name));
   const avatar = "https://scontent.fsgn2-2.fna.fbcdn.net/v/t39.30808-6/246379189_2013455708828432_4440882224966814717_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=RjlVcEilgU0AX-QEXJQ&_nc_ht=scontent.fsgn2-2.fna&oh=00_AfCHoAifC_ctVwysxaxd8i3CqyIlmyiaDWSJp-wnXSgXhg&oe=639D2BCC";
   const roomList = [
     {

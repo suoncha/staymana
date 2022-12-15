@@ -5,6 +5,7 @@ import {CreateUserDto} from './dtos/create-user.dto';
 import {CheckUserDto} from './dtos/check-user.dto';
 import {JwtAuthGuard} from '../auth/guards/jwt.guard';
 import {ChangePasswordDto} from './dtos/change-password.dto';
+import {ChangeImageDto} from "./dtos/change-image.dto";
 
 @Controller('/users')
 export class UserController {
@@ -21,6 +22,13 @@ export class UserController {
     @Get('/:id')
     async getUserById(@Param('id') id: string, @Res() res: Response) {
         const user: any = await this.userService.getUserById(id);
+        return res.status(HttpStatus.OK).send(user);
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Get('/detail/:qr')
+    async getUserByQr(@Param('qr') qr: string, @Res() res: Response) {
+        const user: any = await this.userService.getUserByQr(qr);
         return res.status(HttpStatus.OK).send(user);
     }
 
@@ -55,6 +63,16 @@ export class UserController {
         @Res() res: Response,
     ) {
         const user = await this.userService.changePassword(changePasswordDto);
+        return res.status(HttpStatus.OK).send(user);
+    }
+
+    @Post('/change-image')
+    @HttpCode(HttpStatus.CREATED)
+    async changeImage(
+        @Body() changeImageDto: ChangeImageDto,
+        @Res() res: Response,
+    ) {
+        const user = await this.userService.changeImage(changeImageDto);
         return res.status(HttpStatus.OK).send(user);
     }
 }

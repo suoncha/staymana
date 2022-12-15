@@ -1,25 +1,24 @@
 import React from "react";
-import { View, StyleSheet, ScrollView, Pressable, Text } from "react-native";
+import {View, StyleSheet, ScrollView, Pressable, Text, ActivityIndicator} from "react-native";
 import { ButtonDropDown, SmallCard, InputText, ButtonAddGuess } from "../../components";
 import { Color, TextStyle } from "../../utils"
-
-const roomList = [
-  {
-    avatar: "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
-    name: "Phòng 101",
-  },
-  {
-    avatar: "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
-    name: "Phòng 102",
-  },
-];
+import { getRoomList} from "../../services";
+import * as Cache from '../../services/'
 
 export function ViewHouse({ route, navigation }) {
-  const { name } = route.params;
-  const address = "97 Lý Thường Kiệt, phường 12, quận 3...";
-  const rules = "1. Không gây ồn ào mất trật tự  2. Khôn...";
+  const { name, address, _id } = route.params;
+  const rules = "Không gây ồn ào mất trật tự";
   const [houseInfoStatus, setHouseInfoStatus] = React.useState(true);
   const [roomListStatus, setRoomListStatus] = React.useState(true);
+  const [roomList, setRoomList] = React.useState();
+  const data = {
+    houseId: _id
+  }
+  getRoomList(data).then((res) => {
+    setRoomList(res.data);
+  }).catch((error) => console.log(error))
+  if (!roomList)
+    return <ActivityIndicator/>;
   return (
     <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} style={{ backgroundColor: Color.white_100}}>
       <View style={styles.center}>
@@ -55,18 +54,18 @@ export function ViewHouse({ route, navigation }) {
           <ButtonDropDown icon="home-outline" title="Danh sách phòng trọ"/>
         </Pressable>
         {roomListStatus &&
-          <View style={styles.roomContainer}>
-            {roomList.map(room => 
-              <SmallCard 
-                avatar={room.avatar} 
-                name={room.name}
-                onPress={() => navigation.navigate("ViewRoom", { name: room.name, houseName: name })}
+            <View style={styles.roomContainer}>
+              {roomList.map(room =>
+                <SmallCard
+                  avatar={room.image}
+                  name={room.name}
+                  onPress={() => navigation.navigate("ViewRoom", { name: room.name, houseName: name, area: room.area, price: room.rentalFee, memberId: room.memberId })}
+                />
+              )}
+              <ButtonAddGuess
+                title="Thêm phòng"
+                onPress={() => navigation.navigate("CreateRoom", { fromHouse: true, houseName: name})}
               />
-            )}
-            <ButtonAddGuess
-              title="Thêm phòng"
-              onPress={() => navigation.navigate("CreateRoom", { fromHouse: true, houseName: name})}
-            />
           </View>
         }
       </View>
