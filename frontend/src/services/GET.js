@@ -29,3 +29,31 @@ export const getHouseList = async (data) => {
     })
     return res
 }
+
+export const getRoomList = async (data) => {
+    const PATH = API_URL + '/room/' + data.houseId;
+    let token;
+    await Cache.get('ACCESS_TOKEN').then(res => token = res.slice(1, -1));
+    const res = await axios({
+        method: 'get',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
+        url: PATH,
+    })
+    return res
+}
+
+export const getUserInfoById = async (data) => {
+    const PATH = API_URL + '/users/' + data._id;
+    let token;
+    await Cache.get('ACCESS_TOKEN').then(res => token = res.slice(1, -1));
+    const res = await axios({
+        method: 'get',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
+        url: PATH,
+    })
+    return res
+}
