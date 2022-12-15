@@ -12,8 +12,11 @@ export class RoomService {
     return await this.roomModel.create(createRoomDto);
   }
 
-  async getRooms(getRoomsDto: GetRoomsDto ) {
-    return await this.roomModel.find(getRoomsDto);
+  async getRooms(hostId: string, houseId: string) {
+    return await this.roomModel.find({
+      hostId,
+      houseId,
+    });
   }
 
   async getRentalFee(roomId: string) {
