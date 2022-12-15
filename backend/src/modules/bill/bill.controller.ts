@@ -10,11 +10,11 @@ import {JwtAuthGuard} from "../auth/guards/jwt.guard";
 export class BillController {
   constructor(private readonly billService: BillService, private readonly roomService: RoomService) {}
 
-  @Post('/month')
-  async createMonthBill(@Body() createMonthBillDto: CreateMonthBillDto) {
-    const rentalFee = await this.roomService.getRentalFee(createMonthBillDto.roomId)
-    return await this.billService.createMonthBill(createMonthBillDto, rentalFee);
-  }
+  // @Post('/month')
+  // async createMonthBill(@Body() createMonthBillDto: CreateMonthBillDto) {
+  //   const rentalFee = await this.roomService.getRentalFee(createMonthBillDto.roomId)
+  //   return await this.billService.createMonthBill(createMonthBillDto, rentalFee);
+  // }
 
   @Post('/repair')
   async createRepairBill (@Body() createRepairBillDto: CreateRepairBillDto) {

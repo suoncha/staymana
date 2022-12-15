@@ -34,6 +34,14 @@ export const changePassword = async (data) => {
     return res.data
 }
 
+export const changeImage = async (data) => {
+    const PATH = API_URL + '/users/change-image'
+    const res = await axios({
+        method: 'post', url: PATH, data: data,
+    })
+    return res.data
+}
+
 export const createHouse = async (data) => {
     const PATH = API_URL + '/house';
     await Cache.get('ACCESS_TOKEN').then(res => token = res.slice(1, -1));

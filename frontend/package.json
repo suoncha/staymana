@@ -22,11 +22,13 @@
     "@rneui/base": "github:react-native-elements/react-native-elements#base",
     "@rneui/themed": "^4.0.0-rc.7",
     "add": "^2.0.6",
+    "aws-sdk": "^2.1275.0",
     "axios": "^1.2.1",
     "expo": "~47.0.8",
     "expo-barcode-scanner": "^12.1.0",
     "expo-firebase-recaptcha": "^2.3.1",
     "expo-font": "~11.0.1",
+    "expo-image-picker": "^14.0.2",
     "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
     "firebase": "^9.15.0",
@@ -45,6 +47,7 @@
     "react-native-svg": "13.4.0",
     "react-native-web": "~0.18.7",
     "react-native-webview": "11.23.1",
+    "uuid": "^9.0.0",
     "yarn": "^1.22.19"
   },
   "devDependencies": {

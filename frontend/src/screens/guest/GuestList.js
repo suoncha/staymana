@@ -7,8 +7,11 @@ import * as Cache from '../../services/'
 
 export function GuestList({ navigation }) {
   const [name, setName] = useState('');
-  Cache.get('USER_INFO').then((res) => console.log('Name: ' + JSON.parse(res).name));
-  const avatar = "https://scontent.fsgn2-2.fna.fbcdn.net/v/t39.30808-6/246379189_2013455708828432_4440882224966814717_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=RjlVcEilgU0AX-QEXJQ&_nc_ht=scontent.fsgn2-2.fna&oh=00_AfCHoAifC_ctVwysxaxd8i3CqyIlmyiaDWSJp-wnXSgXhg&oe=639D2BCC";
+  const [avatar, setAvatar] = useState();
+  Cache.get('USER_INFO').then((res) => {
+    setName(JSON.parse(res).name);
+    setAvatar(JSON.parse(res).image)
+  }).catch((error) => console.log(error))
   const roomList = [
     {
       avatar: "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
