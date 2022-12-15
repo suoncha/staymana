@@ -3,32 +3,33 @@ import { View, StyleSheet, ScrollView, Text } from "react-native";
 import { ButtonAddImage, ButtonFullWidth, InputText, SmallCard, ButtonAddGuess } from "../../components";
 import { TextInput } from "react-native-paper";
 import { Color, TextStyle, ScreenSize } from "../../utils"
-
-const roomList = [
-  {
-    avatar: "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
-    name: "Phòng 101",
-  },
-  {
-    avatar: "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
-    name: "Phòng 101",
-  },
-  {
-    avatar: "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
-    name: "Phòng 101",
-  },
-  {
-    avatar: "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
-    name: "Phòng 101",
-  },
-  {
-    avatar: "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
-    name: "Phòng 101",
-  },
-];
+import { createHouse } from '../../services/'
+import * as Cache from '../../services/'
 
 export function CreateHouse({ navigation }) {
   const [houseName, setHouseName] = React.useState("");
+  const [address, setAddress] = React.useState("");
+  const [hostId, setHostId] = React.useState("");
+  const [roomList, setRoomList] = React.useState([]);
+
+  Cache.get('USER_INFO')
+  .then((res) => {
+    setHostId(JSON.parse(res)._id)
+  })
+  .catch((error) => console.log(error));
+
+  const create = () => {
+    const data = 
+    {
+      "name": houseName,
+      "address": address,
+      "image": "https://decordi.vn/wp-content/uploads/2021/05/noi-that-phong-ngu-nho-noi-that-Decordi.jpg",
+      "hostId": hostId,
+      "roomInfoList": roomList,
+    }
+    createHouse(data)
+  }
+
   return (
       <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}
         style={{ backgroundColor: Color.white_100}}
@@ -59,7 +60,7 @@ export function CreateHouse({ navigation }) {
             />
           </View>
           <View style={styles.input}>
-            <InputText title="Địa chỉ nhà trọ" placeholder="Nhập địa chỉ nhà trọ" rightIcon='pencil-outline'></InputText>
+            <InputText title="Địa chỉ nhà trọ" placeholder="Nhập địa chỉ nhà trọ" output={setAddress} allowOutput="true" rightIcon='pencil-outline'></InputText>
           </View>
         </View>
         <View style={styles.roomContainer}>
@@ -72,10 +73,12 @@ export function CreateHouse({ navigation }) {
             )}
           <ButtonAddGuess
             title="Thêm phòng"
-            onPress={() => navigation.navigate("CreateRoom", { fromHouse: true, houseName: houseName})}
+            onPress={() => {
+              navigation.navigate("CreateRoom", { fromHouse: true, houseName: houseName, setRoomList})}
+            }
           />
         </View>
-        <ButtonFullWidth content="Tạo" onPress={() => navigation.popToTop()} />
+        <ButtonFullWidth content="Tạo" onPress={() => {create(), navigation.popToTop()}} />
         <View style={{marginTop: ScreenSize.height * 0.05}}></View>
       </View>
     </ScrollView>

@@ -13,9 +13,6 @@ export class CreateRoomDto {
   image?: string;
 
   @IsDefined()
-  hostId: string;
-
-  @IsDefined()
   houseId: string;
 }
 

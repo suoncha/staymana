@@ -24,7 +24,7 @@ export class HouseController {
                 createRoomDto.rentalFee = roomInfo.rentalFee;
                 createRoomDto.image = roomInfo.image;
                 createRoomDto.houseId = newHouse.id;
-                createRoomDto.hostId = createHouseDto.hostId;
+                // createRoomDto.hostId = createHouseDto.hostId;
 
                 this.roomService.createRoom(createRoomDto);
             })
