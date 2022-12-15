@@ -10,7 +10,7 @@ import {ForgotPasswordStack, GuestStack, HostStack, SignUpStack,} from "../navig
 import {LoginFail} from "./shared/LoginFail";
 import {ButtonFullWidth, InputPassword, InputText} from "../components";
 import {Divider} from "react-native-paper";
-import {signIn} from "../services";
+import {getUserInfo, signIn} from "../services";
 import * as Cache from "../services/Cache";
 
 const AuthContext = React.createContext();
@@ -45,12 +45,18 @@ export function LoginHandler() {
         () => ({
             signIn: async (data) => {
                 const body = {
-                    role: data["hostRole"] === true? 1: 0,
+                    role: data["hostRole"] === true ? 1 : 0,
                     tel: data["username"],
                     password: data["password"]
                 }
                 signIn(body).then(res => {
                     Cache.set('ACCESS_TOKEN', res["access_token"]);
+                    const user = {
+                        role: data["hostRole"] === true ? 1 : 0,
+                        tel: data["username"]
+                    }
+
+                    getUserInfo(user).then((res) => Cache.set('USER_INFO', res.data));
                     dispatch({
                         type: "SIGN_IN",
                         token: Cache.get('ACCESS_TOKEN'),
@@ -222,7 +228,7 @@ function LoginScreen({navigation}) {
 
 function LoginRole({route, navigation}) {
     const {username, password} = route.params;
-    const { signIn } = React.useContext(AuthContext);
+    const {signIn} = React.useContext(AuthContext);
     return (
         <View style={styles.container}>
             <View style={{...styles.container}}>
@@ -241,9 +247,11 @@ function LoginRole({route, navigation}) {
                 <View style={{padding: ScreenSize.height * 0.04}}></View>
                 <Text style={TextStyle.h3}>Bạn muốn đăng nhập với tư cách là</Text>
                 <View style={{padding: ScreenSize.height * 0.012}}></View>
-                <ButtonFullWidth content='Chủ trọ' onPress={() => signIn({ username, password, hostRole: true })}></ButtonFullWidth>
+                <ButtonFullWidth content='Chủ trọ'
+                                 onPress={() => signIn({username, password, hostRole: true})}></ButtonFullWidth>
                 <View style={{padding: ScreenSize.height * 0.015}}></View>
-                <ButtonFullWidth content='Khách thuê trọ' onPress={() => signIn({ username, password, hostRole: false })}></ButtonFullWidth>
+                <ButtonFullWidth content='Khách thuê trọ'
+                                 onPress={() => signIn({username, password, hostRole: false})}></ButtonFullWidth>
             </View>
         </View>
     );
