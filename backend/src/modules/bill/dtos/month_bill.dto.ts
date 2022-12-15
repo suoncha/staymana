@@ -23,3 +23,8 @@ export class CreateMonthBillDto {
   @IsDefined()
   expiration: string;
 }
+
+export class GetMonthBillDto {
+  @IsDefined()
+  roomId: string;
+}

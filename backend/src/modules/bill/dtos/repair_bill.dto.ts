@@ -14,3 +14,8 @@ export class CreateRepairBillDto {
   @IsDefined()
   total: number;
 }
+
+export class GetRepairBillDto {
+  @IsDefined()
+  roomId: string;
+}
