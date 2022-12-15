@@ -28,4 +28,6 @@ export class CreateUserDto {
 
   @IsDefined()
   password: string;
+
+  qrCode: string;
 }

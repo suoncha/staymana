@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { CheckUserDto } from './dtos/check-user.dto';
 import { ChangePasswordDto } from './dtos/change-password.dto';
+import {ChangeImageDto} from "./dtos/change-image.dto";
 
 @Injectable()
 export class UserService {
@@ -24,6 +25,10 @@ export class UserService {
     return user;
   }
 
+  async getUserByQr(qr: string): Promise<User> {
+    return this.userModel.findOne({qrCode: qr});
+  }
+
   async getUserByRoleAndTel(checkUserDto: CheckUserDto): Promise<User> {
     return this.userModel.findOne({
       role: checkUserDto.role,
@@ -41,6 +46,14 @@ export class UserService {
       tel: changePasswordDto.tel
     },
       { password: changePasswordDto.password}
+    );
+  }
+
+  async changeImage(changeImageDto: ChangeImageDto): Promise<User> {
+    return this.userModel.findOneAndUpdate({
+          _id: changeImageDto.userId
+        },
+        { image: changeImageDto.image}
     );
   }
 }
