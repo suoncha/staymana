@@ -9,7 +9,7 @@ import { BillModule } from './modules/bill/bill.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb://vu:vu@34.143.240.21:27017/staymana?authSource=admin',
+      'mongodb://your-ip'
     ),
     UserModule,
     AuthModule,
